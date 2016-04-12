@@ -13,10 +13,6 @@
 
 Route::get('/', function()
 {
-	// return View::make('hello');
-	return View::make('pages.example');
+	return View::make('hello');
 });
 
-Route::get('example', function () {
-    return view('pages.example');
-});
