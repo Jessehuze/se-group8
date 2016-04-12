@@ -1,0 +1,4 @@
+@extends('layouts.default')
+@section('content')
+    content will go here
+@stop
