@@ -12,7 +12,15 @@
 */
 
 Route::get('/', function () {
+    return view('login');
+});
+
+Route::get('example', function () {
     return view('pages.example');
+});
+
+Route::get('dashboard', function () {
+    return view('pages.dashboard');
 });
 
 /*
