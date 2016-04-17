@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
+});
+
+Route::get('login', function () {
+    return view('pages.login');
 });
 
 Route::get('example', function () {
@@ -21,6 +25,10 @@ Route::get('example', function () {
 
 Route::get('dashboard', function () {
     return view('pages.dashboard');
+});
+
+Route::get('signup', function () {
+    return view('pages.signup');
 });
 
 /*

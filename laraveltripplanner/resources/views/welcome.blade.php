@@ -1,45 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
+  <head>
+    <title>OnYourWay - Welcome</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <!-- Page Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+    <!-- Style Sheet For This Page -->
+    <link href="./css/welcome.css" rel="stylesheet" type="text/css"> 
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5 - test</div>
-            </div>
-        </div>
-    </body>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    @include('includes.header')
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6 content">
+        <div class="welcometitle">Welcome to OnYourWay</div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+  </body>
 </html>

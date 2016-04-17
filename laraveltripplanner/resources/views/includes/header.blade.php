@@ -1,11 +1,32 @@
-<div class="navbar">
-    <div class="navbar-inner">
-        <a id="logo" href="/">OnYourWay</a>
-        <ul class="nav">
-            <li><a href="/"></a>Link 1</li>
-            <li><a href="/about">Link 2</a></li>
-            <li><a href="/projects">Link 3</a></li>
-            <li><a href="/contact">Link 4</a></li>
-        </ul>
+<style>
+  .headertitle {
+    font-size: 40px;
+    margin: 0;
+  }
+  .header {
+    background-color: #333333;
+    color: white;
+  }
+</style>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-inverse header">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand headertitle" href="/">OnYourWay</a>
     </div>
-</div>
+    <ul class="nav navbar-nav navbar-right">
+
+      <!-- Possibly Only Visible If Logged In -->
+      <li><a href="/dashboard"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
+
+      <!-- Visible Only If Logged In -->      
+        <!-- Logout Button Goes Here -->
+
+      <!-- Hidden If Logged In -->
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+    </ul>
+  </div>
+</nav>

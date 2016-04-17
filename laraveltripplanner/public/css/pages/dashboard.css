@@ -1,0 +1,32 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: table;
+    font-weight: 100;
+    font-family: 'Lato';
+}
+
+.content {
+    text-align: center;
+    display: inline-block;
+}
+
+.profilename {
+    font-size: 30px;
+    text-align: right;
+}
+
+.header {
+    background-color: #333333;
+    color: white;
+}
+
+.panelheaders {
+    background-color: #6a6a6a !important;
+    color: white !important;
+}
