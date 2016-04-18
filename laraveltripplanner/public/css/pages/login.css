@@ -9,6 +9,8 @@ body {
     display: table;
     font-weight: 100;
     font-family: 'Lato';
+    background-image: url("../../images/road-sky_resized.jpg");
+    background-size: cover;
 }
 
 .container {

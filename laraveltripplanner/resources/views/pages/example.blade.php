@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Front Page</div>
+                <div class="title">Example Page</div>
             </div>
         </div>
     </body>
