@@ -9,7 +9,7 @@
     @include('includes.bootstrap')
 
     <!-- Style Sheet For This Page -->
-    <link href="./css/pages/dashboard.css" rel="stylesheet" type="text/css"> 
+    <link href="./css/pages/dashboard.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -26,48 +26,56 @@
           <div class="panel-group" id="accordion">
             <!-- My Routes Accordion -->
             <div class="panel panel-default">
-              <div class="panel-heading panelheaders">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><span class="glyphicon glyphicon-list"></span></a>
-                  My Routes
-                </h4>
-              </div>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                <div class="panel-heading panelheaders">
+                  <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-list"></span>
+                    My Routes
+                  </h4>
+                </div>
+              </a>
               <div id="collapse1" class="panel-collapse collapse in">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
             <!-- Shared Routes Accordion -->
             <div class="panel panel-default">
-              <div class="panel-heading panelheaders">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><span class="glyphicon glyphicon-list"></span></a>
-                  Shared Routes
-                </h4>
-              </div>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                <div class="panel-heading panelheaders">
+                  <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-list"></span>
+                    Shared Routes
+                  </h4>
+                </div>
+              </a>
               <div id="collapse2" class="panel-collapse collapse">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
             <!-- Routes Shared With You Accordion  -->
             <div class="panel panel-default">
-              <div class="panel-heading panelheaders">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><span class="glyphicon glyphicon-list"></span></a>
-                  Routes Shared With You
-                </h4>
-              </div>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                <div class="panel-heading panelheaders">
+                  <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-list"></span>
+                    Routes Shared With You
+                  </h4>
+                </div>
+              </a>
               <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
             <!-- Groups Accordion -->
             <div class="panel panel-default">
-              <div class="panel-heading panelheaders">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><span class="glyphicon glyphicon-list"></span></a>
-                  Groups
-                </h4>
-              </div>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                <div class="panel-heading panelheaders">
+                  <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-list"></span>
+                    Groups
+                  </h4>
+                </div>
+              </a>
               <div id="collapse4" class="panel-collapse collapse">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
