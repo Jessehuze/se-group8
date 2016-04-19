@@ -20,7 +20,7 @@
       <div class="col-sm-3">
       </div>
       <div class="col-sm-6 content">
-        <div class="welcometitle">Welcome to OnYourWay</div>
+        <div class="welcometitle">Welcome</div>
       </div>
       <div class="col-sm-3">
       </div>
