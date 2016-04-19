@@ -13,10 +13,10 @@ class CreateRouteAccessTable extends Migration
     public function up()
     {
         Schema::create('route_access', function (Blueprint $table) {
-            $table->foreign('userid')
+            $table->string('userid')->foreign()
                   ->references('username')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('routeid')
+            $table->integer('routeid')->unsigned()->foreign()
                   ->references('routeid')->on('route')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->char('modrights', 1);

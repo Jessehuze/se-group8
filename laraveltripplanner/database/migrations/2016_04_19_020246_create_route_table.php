@@ -13,9 +13,9 @@ class CreateRouteTable extends Migration
     public function up()
     {
         Schema::create('route', function (Blueprint $table) {
-            $table->increments('routeid')->primary();
+            $table->increments('routeid');
             $table->string('rname');
-            $table->foreign('ownerid')
+            $table->string('ownerid')->foreign()
                   ->references('username')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

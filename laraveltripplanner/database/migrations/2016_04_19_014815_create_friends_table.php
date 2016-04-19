@@ -13,10 +13,10 @@ class CreateFriendsTable extends Migration
     public function up()
     {
         Schema::create('friends', function (Blueprint $table) {
-            $table->foreign('userid')
+            $table->string('userid')->foreign()
                   ->references('username')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('friendid')
+            $table->string('friendid')->foreign()
                   ->references('username')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade')->onUpdate('cascade');
             $table->primary(['userid', 'friendid']);

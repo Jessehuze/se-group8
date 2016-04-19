@@ -13,10 +13,10 @@ class CreateGroupMembersTable extends Migration
     public function up()
     {
         Schema::create('group_members', function (Blueprint $table) {
-            $table->foreign('groupid')
+            $table->integer('groupid')->unsigned()->foreign()
                   ->references('groupid')->on('groups')
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('userid')
+            $table->string('userid')->foreign()
                   ->references('username')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['groupid', 'userid']);
