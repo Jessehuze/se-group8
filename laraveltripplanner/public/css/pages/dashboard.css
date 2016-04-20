@@ -60,8 +60,12 @@ body {
 /* style of currently selected route (only one) */
 #active-route {
   background-color: green;
-  color: white;
   text-shadow: 2px 2px 4px #000000;
+}
+
+#active-route:hover {
+  background-color: green;
+  color: white;
 }
 
 #map {
