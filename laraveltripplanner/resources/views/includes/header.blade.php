@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand headertitle" href="#">OnYourWay</a>
+            <a class="navbar-brand headertitle" href="/">OnYourWay</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
