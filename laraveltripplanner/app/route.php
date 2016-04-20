@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
     protected $primaryKey = 'routeid';
-
+ 
     //Mass Assignment
     protected $fillable = array('rname', 'ownerid');
 
