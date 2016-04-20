@@ -31,12 +31,12 @@ window.addEventListener(
   }
 );
 
-var activeRoute = undefined;
+var active = undefined;
 
 function sidebarClick(divObj) {
-  if(activeRoute != undefined) {
-    activeRoute.id="";
+  if(active != undefined) {
+    active.id="";
   }
-  activeRoute = divObj;
-  activeRoute.id="active-route";
+  active = divObj;
+  active.id="active-route";
 }
