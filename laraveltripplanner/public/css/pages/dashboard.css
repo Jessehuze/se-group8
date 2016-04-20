@@ -6,9 +6,13 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    display: table;
     font-weight: 100;
     font-family: 'Lato';
+}
+
+.col-sm-3, .row, .col-sm-9 {
+    padding:0;
+    margin:0;
 }
 
 .content {
@@ -30,3 +34,9 @@ body {
     background-color: #6a6a6a !important;
     color: white !important;
 }
+
+#map {
+        width: 500px;
+        height: 400px;
+        background-color: #eee;
+      }
