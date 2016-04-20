@@ -31,4 +31,8 @@ class User extends Model
     public function ownedRoutes() {
         return $this->hasMany('Route');
     }
+
+    public function routes() {
+        return $this->belongsToMany('Route', 'route_access', 'userid', 'routid');
+    }
 }

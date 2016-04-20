@@ -12,9 +12,18 @@
     <link href="./css/pages/dashboard.css" rel="stylesheet" type="text/css">
 
     <!-- Javascript Pages -->
-    <script src="./js/pages/dashboard.js" type="text/javascript"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-        async defer></script>
+    <script src="http://maps.google.com/maps/api/js?libraries=places&callback=init"
+      type="text/javascript"
+      async defer></script>
+
+    <script src="./js/pages/dashboard.js" 
+      type="text/javascript"
+      async defer></script>
+
+
+
+<!--     <script src="https://maps.googleapis.com/maps/api/js?callback=init"
+      async defer></script> -->
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -22,6 +31,7 @@
     <!-- Contains Everything Below Navbar -->
     <div class="row">
       <!-- Left Column Which Contains Google Map -->
+      <input id="map-input" class="controls" type="text" placeholder="Search Box">
       <div class="col-sm-9 title content">
         <div id="map"></div>
       </div>

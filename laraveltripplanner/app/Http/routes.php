@@ -23,6 +23,8 @@ Route::get('dashboard', 'PagesController@dashboard');
 
 Route::get('signup', 'PagesController@signup');
 
+Route::get('logout', array('uses' => 'HomeController@doLogout'));
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -37,3 +39,7 @@ Route::get('signup', 'PagesController@signup');
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+//Route::auth();
+
+//Route::get('/home', 'HomeController@index');
