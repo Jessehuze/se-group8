@@ -54,7 +54,37 @@
                 </div>
               </a>
               <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">Data From Controller Goes Here</div>
+                <div class="panel-body sidebar-panel">
+                  <!-- Data From Controller Goes Here -->
+                  <!-- foreach($data['routes'] as $route) -->
+                  <div class="row sidebar-row">
+                    <div class="col-sm-6">
+                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                      </div>
+                      <div class="row">
+                        9000 Miles<!-- @echo $route['distance']; -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- endforeach -->
+                  <div class="row sidebar-row">
+                    <div class="col-sm-6">
+                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                      </div>
+                      <div class="row">
+                        9000 Miles<!-- @echo $route['distance']; -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Routes Shared With You Accordion  -->
