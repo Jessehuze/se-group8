@@ -16,9 +16,12 @@ class PagesController extends Controller
       $friends = User::friends();
       $ownedGroups = User::ownedGroups();
       $ownedRoutes = User::ownedRoutes();
-      return view('pages.dashboard', ['user' => $user], ['routes' => $routes],
-                  ['groups' => $groups], ['friends' => $friends],
-                  ['ownedGroups' => $ownedGroups], ['ownedRoutes' => $ownedRoutes]);
+      return view('pages.dashboard', ['user' => $user, 
+                                      'routes' => $routes,
+                                      'groups' => $groups, 
+                                      'friends' => $friends,
+                                      'ownedGroups' => $ownedGroups, 
+                                      'ownedRoutes' => $ownedRoutes]);
     }
 
     public function example()
