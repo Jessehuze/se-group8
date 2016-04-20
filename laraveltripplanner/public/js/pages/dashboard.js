@@ -23,7 +23,27 @@ function initMap() {
       zoom: 15
     });
 
-    
+    // Instantiate a directions service.
+    directionsService = new google.maps.DirectionsService;
+
+    // Create a renderer for directions and bind it to the map.
+    directionsDisplay = new google.maps.DirectionsRenderer({map: map});
+
+    // Instantiate an info window to hold step text.
+    stepDisplay = new google.maps.InfoWindow;
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, map.getCenter());
+        });
+    }
 
     // Bias the SearchBox results towards places that are within the bounds of the
     // current map's viewport.
@@ -35,13 +55,11 @@ function initMap() {
 
 // This function initializes the searchbox
 function initSearch() {
-    var input = document.getElementById("map-input");
+    searchDiv = document.getElementById("map-input");
     markers = [];
-
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     
     // GLOBAL VARIABLE
-    searchBox = new google.maps.places.SearchBox((input));
+    searchBox = new google.maps.places.SearchBox((searchDiv));
 
     // Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
@@ -49,16 +67,26 @@ function initSearch() {
         searchBox, 'places_changed', function() {
             var places = searchBox.getPlaces();
 
+            document.getElementById("routes").insertAdjacentHTML(
+                "beforeend", "<div class=\"location\" id=\""
+                + places[0].name + markers.length
+                + "\">"
+                + "<button class=\"btn-danger deleteLocation\">X</button>"
+                + "  "
+                + places[0].name
+                + "</div>");
+            
             if (places.length == 0) {
                 return;
             }
 
-            for (var i = 0, marker; marker = markers[i]; i++) {
-                marker.setMap(null);
-            }
+            // Clear out the old markers.
+            // for (var i = 0, marker; marker = markers[i]; i++) {
+            //     marker.setMap(null);
+            // }
 
             // For each place, get the icon, place name, and location.
-            markers = [];
+            // markers = [];
             var bounds = new google.maps.LatLngBounds();
             for (var i = 0, place; place = places[i]; i++) {
                 var image = {
@@ -81,7 +109,8 @@ function initSearch() {
 
                 bounds.extend(place.geometry.location);
             }
-
+            calculateAndDisplayRoute(
+                directionsDisplay, directionsService, markers, stepDisplay, map);
             map.fitBounds(bounds);
         }
     );
@@ -103,8 +132,51 @@ window.addEventListener(
     }
 );
 
-// This function draws a route on the map
-function drawRoute() {
-    calculateAndDisplayRoute(
-        directionsDisplay, directionsService, markerArray, stepDisplay, map);
+function calculateAndDisplayRoute(directionsDisplay, directionsService,
+    markerArray, stepDisplay, map) {
+    // First, remove any existing markers from the map.
+    for (var i = 0; i < markerArray.length; i++) {
+        markerArray[i].setMap(null);
+    }
+    // Retrieve the start and end locations and create a DirectionsRequest
+    directionsService.route({
+        origin: markers[0].position,
+        destination: markers[1].position,
+        travelMode: google.maps.TravelMode.DRIVING
+    }, function(response, status) {
+        // Route the directions and pass the response to a function to create
+        // markers for each step.
+        if (status === google.maps.DirectionsStatus.OK) {
+            document.getElementById('warnings-panel').innerHTML =
+                '<b>' + response.routes[0].warnings + '</b>';
+            directionsDisplay.setDirections(response);
+            showSteps(response, markerArray, stepDisplay, map);
+        } else {
+            window.alert('Directions request failed due to ' +
+                status);
+        }
+    });
+}
+
+function showSteps(directionResult, markerArray, stepDisplay, map) {
+    // For each step, place a marker, and add the text to the marker's infowindow.
+    // Also attach the marker to an array so we can keep track of it and remove it
+    // when calculating new routes.
+    var myRoute = directionResult.routes[0].legs[0];
+    for (var i = 0; i < myRoute.steps.length; i++) {
+        var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+        marker.setMap(map);
+        marker.setPosition(myRoute.steps[i].start_location);
+        attachInstructionText(stepDisplay, marker, myRoute.steps[i].instructions,
+            map);
+    }
+}
+
+function attachInstructionText(stepDisplay, marker, text, map) {
+    google.maps.event.addListener(marker, 'click', function() {
+        // Open an info window when the marker is clicked on, containing the text
+        // of the step.
+        stepDisplay.setContent(text);
+        stepDisplay.open(map, marker);
+    });
 }

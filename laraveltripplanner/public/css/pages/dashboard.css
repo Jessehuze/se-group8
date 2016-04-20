@@ -35,6 +35,23 @@ body {
     color: white !important;
 }
 
+.location {
+    background-color: white;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-bottom:3px;
+}
+
+.deleteLocation {
+    align-items: left;
+    border-radius: 8px;
+}
+
+#searchPanel, #routes {
+    background-color: #eee;
+    margin-top: 5px;
+}
+
 #map {
         width: 500px;
         height: 400px;
@@ -42,10 +59,13 @@ body {
       }
 
 #map-input {
-    margin: 10px;
     font-size: 14px;
+    width: 100%;
 }
 
 #accordion {
     margin-top: 10px;
 }
+
+
+

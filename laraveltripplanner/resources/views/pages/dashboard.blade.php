@@ -31,7 +31,6 @@
     <!-- Contains Everything Below Navbar -->
     <div class="row">
       <!-- Left Column Which Contains Google Map -->
-      <input id="map-input" class="controls" type="text" placeholder="Search Box">
       <div class="col-sm-9 title content">
         <div id="map"></div>
       </div>
@@ -39,9 +38,33 @@
       <div class="col-sm-3">
           <!-- Start Accordion Panel -->
           <div class="panel-group" id="accordion">
-            <!-- My Routes Accordion -->
+            <!-- New Route Accordion -->
             <div class="panel panel-default">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                <div class="panel-heading panelheaders">
+                  <h4 class="panel-title">
+                    <span class="glyphicon glyphicon-list"></span>
+                    Create Route
+                  </h4>
+                </div>
+              </a>
+              <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body" id="route-name">
+                  <label for="route-name">Route Name</label>
+                  <input id="route-name" type="text">
+                </div>
+                <div class="panel-body" id="routes">
+                </div>
+                <div class="panel-body" id="searchPanel">
+                  <input id="map-input" class="controls" type="text" placeholder="Search Box">
+                </div>
+                <div class="panel-body" id="warnings-panel">
+                </div>
+              </div>
+            </div>
+            <!-- My Routes Accordion -->
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
                 <div class="panel-heading panelheaders">
                   <h4 class="panel-title">
                     <span class="glyphicon glyphicon-list"></span>
@@ -49,13 +72,13 @@
                   </h4>
                 </div>
               </a>
-              <div id="collapse1" class="panel-collapse collapse in">
+              <div id="collapse2" class="panel-collapse collapse in">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
             <!-- Shared Routes Accordion -->
             <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
                 <div class="panel-heading panelheaders">
                   <h4 class="panel-title">
                     <span class="glyphicon glyphicon-list"></span>
@@ -63,13 +86,13 @@
                   </h4>
                 </div>
               </a>
-              <div id="collapse2" class="panel-collapse collapse">
+              <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
             <!-- Routes Shared With You Accordion  -->
             <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
                 <div class="panel-heading panelheaders">
                   <h4 class="panel-title">
                     <span class="glyphicon glyphicon-list"></span>
@@ -77,13 +100,13 @@
                   </h4>
                 </div>
               </a>
-              <div id="collapse3" class="panel-collapse collapse">
+              <div id="collapse4" class="panel-collapse collapse">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
             <!-- Groups Accordion -->
             <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
                 <div class="panel-heading panelheaders">
                   <h4 class="panel-title">
                     <span class="glyphicon glyphicon-list"></span>
@@ -91,7 +114,7 @@
                   </h4>
                 </div>
               </a>
-              <div id="collapse4" class="panel-collapse collapse">
+              <div id="collapse5" class="panel-collapse collapse">
                 <div class="panel-body">Data From Controller Goes Here</div>
               </div>
             </div>
