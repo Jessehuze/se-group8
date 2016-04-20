@@ -15,21 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', function () {
-    return view('pages.login');
-});
+Route::get('login', 'PagesController@login');
 
-Route::get('example', function () {
-    return view('pages.example');
-});
+Route::get('example', 'PagesController@example');
 
-Route::get('dashboard', function () {
-    return view('pages.dashboard');
-});
+Route::get('dashboard', 'PagesController@dashboard');
 
-Route::get('signup', function () {
-    return view('pages.signup');
-});
+Route::get('signup', 'PagesController@signup');
 
 /*
 |--------------------------------------------------------------------------
