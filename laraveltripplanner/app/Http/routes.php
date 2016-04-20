@@ -23,10 +23,7 @@ Route::get('dashboard', 'PagesController@dashboard');
 
 Route::get('signup', 'PagesController@signup');
 
-Route::controllers([
-  'auth' => 'Auth\AuthController'
-  'password' => 'Auth\PasswordController'
-]);
+Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +39,7 @@ Route::controllers([
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+//Route::auth();
+
+Route::get('/home', 'HomeController@index');

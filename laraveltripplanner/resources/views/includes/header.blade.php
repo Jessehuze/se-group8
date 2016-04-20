@@ -30,12 +30,13 @@
               <!-- Possibly Only Visible If Logged In -->
               <li><a href="/dashboard"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
 
-              <!-- Visible Only If Logged In -->      
-                <!-- Logout Button Goes Here -->
-
-              <!-- Hidden If Logged In -->
-              <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <!-- Logout Visible Only If Logged In And Login And Signup If Not-->      
+              @if (Auth::check())
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              @else
+                <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
