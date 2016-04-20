@@ -46,7 +46,7 @@
                   <div class="sidebar-row row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
                       
-                      @echo $name;<!-- @echo $route['name']; -->
+                      <!-- @echo $name;      @echo $route['name']; -->
                     </div>
                     <div class="col-sm-6">
                       <div class="row">

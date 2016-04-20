@@ -23,8 +23,8 @@ class PagesController extends Controller
       #                                'ownedGroups' => $ownedGroups, 
       #                                'ownedRoutes' => $ownedRoutes]);
 
-      return View::make('dashboard.blade')
-          ->with('name', 'Dalton');
+      #return View::make('dashboard.blade')
+      #    ->with('name', 'Dalton');
         
     }
 
