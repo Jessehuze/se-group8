@@ -10,7 +10,15 @@ class PagesController extends Controller
 {
     public function dashboard()
     {
-      return view('pages.dashboard');
+      $user = Auth::user();
+      $routes = User::routes();
+      $groups = User::groups();
+      $friends = User::friends();
+      $ownedGroups = User::ownedGroups();
+      $ownedRoutes = User::ownedRoutes();
+      return view('pages.dashboard', ['user' => $user], ['routes' => $routes],
+                  ['groups' => $groups], ['friends' => $friends],
+                  ['ownedGroups' => $ownedGroups], ['ownedRoutes' => $ownedRoutes]);
     }
 
     public function example()
