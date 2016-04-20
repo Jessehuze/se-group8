@@ -55,7 +55,8 @@
                   <!-- foreach($data['routes'] as $route) -->
                   <div class="sidebar-row row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
-                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                      Colorado to Timbucktoo
+                      <!-- @echo $name;      @echo $route['name']; -->
                     </div>
                     <div class="col-sm-6">
                       <div class="row">

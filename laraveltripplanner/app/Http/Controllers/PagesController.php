@@ -17,12 +17,12 @@ class PagesController extends Controller
       $friends = User::friends();
       $ownedGroups = User::ownedGroups();
       $ownedRoutes = User::ownedRoutes();
-      
-      $userdata = array('user' => $user, 
+
+      $userdata = array('user' => $user,
                         'routes' => $routes,
-                        'groups' => $groups, 
+                        'groups' => $groups,
                         'friends' => $friends,
-                        'ownedGroups' => $ownedGroups, 
+                        'ownedGroups' => $ownedGroups,
                         'ownedRoutes' => $ownedRoutes);
       var_dump($userdata);
       */
