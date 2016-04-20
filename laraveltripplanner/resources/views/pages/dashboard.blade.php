@@ -40,7 +40,39 @@
                 </div>
               </a>
               <div id="collapse1" class="panel-collapse collapse in">
-                <div class="panel-body">Data From Controller Goes Here</div>
+                <div class="panel-body sidebar-panel">
+                  <!-- Data From Controller Goes Here -->
+                  <!-- foreach($data['routes'] as $route) -->
+                  <div class="sidebar-row row" onclick=sidebarClick(this)>
+                    <div class="col-sm-6">
+                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                      </div>
+                      <div class="row">
+                        9000 Miles<!-- @echo $route['distance']; -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- endforeach -->
+                  <!-- DIV TO BE REMOVED, USED FOR TESTING VIEW -->
+                  <div class="row sidebar-row" onclick=sidebarClick(this)>
+                    <div class="col-sm-6">
+                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                      </div>
+                      <div class="row">
+                        9000 Miles<!-- @echo $route['distance']; -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END OF DIV TO BE REMOVED -->
+                </div>
               </div>
             </div>
             <!-- Shared Routes Accordion -->
@@ -57,7 +89,7 @@
                 <div class="panel-body sidebar-panel">
                   <!-- Data From Controller Goes Here -->
                   <!-- foreach($data['routes'] as $route) -->
-                  <div class="row sidebar-row">
+                  <div class="sidebar-row row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
                       Colorado to Timbucktoo<!-- @echo $route['name']; -->
                     </div>
@@ -71,7 +103,8 @@
                     </div>
                   </div>
                   <!-- endforeach -->
-                  <div class="row sidebar-row">
+                  <!-- DIV TO BE REMOVED, USED FOR TESTING VIEW -->
+                  <div class="row sidebar-row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
                       Colorado to Timbucktoo<!-- @echo $route['name']; -->
                     </div>
@@ -84,6 +117,7 @@
                       </div>
                     </div>
                   </div>
+                  <!-- END OF DIV TO BE REMOVED -->
                 </div>
               </div>
             </div>
