@@ -14,10 +14,10 @@ class CreateGroupRouteAccessTable extends Migration
     {
         Schema::create('group_route_access', function (Blueprint $table) {
             $table->integer('groupid')->unsigned()->foreign()
-                  ->references('groupid')->on('groups')
+                  ->references('groupid')->on('Group')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->integer('routeid')->unsigned()->foreign()
-                  ->references('routeid')->on('route')
+                  ->references('routeid')->on('Route')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['groupid', 'routeid']);
             $table->timestamps();

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupsTable extends Migration
+class CreateWaypointTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,13 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->increments('groupid');
-            $table->string('gname');
-            $table->string('ownerid')->foreign()
-                  ->references('username')->on('users')
+        Schema::create('Waypoint', function (Blueprint $table) {
+            $table->increments('waypointid');
+            $table->integer('routeid')->unsigned()->foreign()
+                  ->references('routeid')->on('Route')
                   ->onDelete('cascade')->onUpdate('cascade');
+            $table->float('lat');
+            $table->float('lon');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('groups');
+        Schema::drop('Waypoint');
     }
 }
