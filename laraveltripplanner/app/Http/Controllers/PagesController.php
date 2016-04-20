@@ -10,18 +10,18 @@ class PagesController extends Controller
 {
     public function dashboard()
     {
-     # $user = Auth::user();
-      #$routes = User::routes();
-      #$groups = User::groups();
-      ##$friends = User::friends();
-      #$ownedGroups = User::ownedGroups();
-      #$ownedRoutes = User::ownedRoutes();
-     # return view('pages.dashboard', ['user' => $user, 
-      #                                'routes' => $routes,
-      #                                'groups' => $groups, 
-     #                                 'friends' => $friends,
-      #                                'ownedGroups' => $ownedGroups, 
-      #                                'ownedRoutes' => $ownedRoutes]);
+      $user = Auth::user();
+      $routes = User::routes();
+      $groups = User::groups();
+      $friends = User::friends();
+      $ownedGroups = User::ownedGroups();
+      $ownedRoutes = User::ownedRoutes();
+      return view('pages.dashboard', ['user' => $user, 
+                                      'routes' => $routes,
+                                      'groups' => $groups, 
+                                      'friends' => $friends,
+                                      'ownedGroups' => $ownedGroups, 
+                                      'ownedRoutes' => $ownedRoutes]);
 
       #return View::make('dashboard.blade')
       #    ->with('name', 'Dalton');
