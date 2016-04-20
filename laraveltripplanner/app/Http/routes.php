@@ -23,6 +23,11 @@ Route::get('dashboard', 'PagesController@dashboard');
 
 Route::get('signup', 'PagesController@signup');
 
+Route::controllers([
+  'auth' => 'Auth\AuthController'
+  'password' => 'Auth\PasswordController'
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
