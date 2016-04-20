@@ -23,18 +23,7 @@ function initMap() {
       zoom: 15
     });
 
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            map.setCenter(pos);
-        }, function() {
-            handleLocationError(true, map.getCenter());
-        });
-    }
+    
 
     // Bias the SearchBox results towards places that are within the bounds of the
     // current map's viewport.
@@ -116,5 +105,6 @@ window.addEventListener(
 
 // This function draws a route on the map
 function drawRoute() {
-
+    calculateAndDisplayRoute(
+        directionsDisplay, directionsService, markerArray, stepDisplay, map);
 }
