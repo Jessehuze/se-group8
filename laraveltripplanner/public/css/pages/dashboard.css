@@ -40,3 +40,12 @@ body {
         height: 400px;
         background-color: #eee;
       }
+
+#map-input {
+    margin: 10px;
+    font-size: 14px;
+}
+
+#accordion {
+    margin-top: 10px;
+}
