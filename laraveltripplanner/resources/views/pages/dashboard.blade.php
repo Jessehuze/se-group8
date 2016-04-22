@@ -12,7 +12,7 @@
     <link href="./css/pages/dashboard.css" rel="stylesheet" type="text/css">
 
     <!-- Javascript Pages -->
-    <script src="http://maps.google.com/maps/api/js?libraries=places&callback=init"
+    <script src="http://maps.google.com/maps/api/js?libraries=places&callback=initFunc"
       type="text/javascript"
       async defer></script>
 
@@ -60,6 +60,7 @@
                 </div>
                 <div class="panel-body" id="warnings-panel">
                 </div>
+                <button type="button" id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">Save Route</button>
               </div>
             </div>
             <!-- My Routes Accordion -->

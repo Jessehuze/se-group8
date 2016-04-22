@@ -1,13 +1,19 @@
+// Some global variables (there are others)
+waypts = [];
+markers = [];
+placeArray = [];
+
+
 // This function is called via callback when the google js file is loaded
-function init() {
+function initFunc() {
     initMap();
     initSearch();
 }
 
 // This function initializes the map
 function initMap() {
-  // Ensure the map is the right size before we initialize it
-  drawMap();
+    // Ensure the map is the right size before we initialize it
+    sizeMap();
 
 
     // Get the mapDiv from the DOM
@@ -57,11 +63,11 @@ function initMap() {
 // This function initializes the searchbox
 function initSearch() {
     searchDiv = document.getElementById("map-input");
-    markers = [];
-    placeArray = [];
 
     // GLOBAL VARIABLE
     searchBox = new google.maps.places.SearchBox((searchDiv));
+    searchService = new google.maps.places.PlacesService(map);
+    geocoder = new google.maps.Geocoder();
 
     // Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
@@ -69,68 +75,80 @@ function initSearch() {
         searchBox, 'places_changed', function() {
             places = searchBox.getPlaces();
 
+            // Check to make sure there was a result.
             if (places.length == 0) {
                 return;
             }
 
-            // Add the place to the array
-            placeArray.push(places[0]);
-            var index = placeArray.length-1;
-
-            // Clear out the old markers.
-            for (var i = 0, marker; marker = markers[i]; i++) {
-                marker.setMap(null);
+            // Check to make sure the result isn't already in the list
+            duplicate = false;
+            for(i=0; i < placeArray.length; i++) {
+                if(placeArray[i].place_id == places[0].place_id) {
+                    duplicate = true;
+                    alert('That item is already in the list');
+                }
             }
 
-            // For each place, get the icon, place name, and location.
-            markers = [];
-            var bounds = new google.maps.LatLngBounds();
+            if(duplicate == false) {
+                // Add the place to the array
+                placeArray.push(places[0]);
+                var index = placeArray.length-1;
 
-            for (var i = 0, place; place = placeArray[i]; i++) {
-                var image = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
-                };
+                // Clear out the old markers.
+                for (var i = 0, marker; marker = markers[i]; i++) {
+                    marker.setMap(null);
+                }
 
-                // Create a marker for each place.
-                var marker = new google.maps.Marker({
-                    map: map,
-                    icon: image,
-                    title: place.name,
-                    position: place.geometry.location
-                });
+                // For each place, get the icon, place name, and location.
+                markers.length = 0;
+                var bounds = new google.maps.LatLngBounds();
 
-                markers.push(marker);
+                for (var i = 0, place; place = placeArray[i]; i++) {
+                    var image = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
 
-                bounds.extend(place.geometry.location);
+                    // Create a marker for each place.
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        icon: image,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+
+                    markers.push(marker);
+
+                    bounds.extend(place.geometry.location);
+                }
+
+                var id = placeArray[index].name + markers.length
+                document.getElementById("routes").insertAdjacentHTML(
+                    "beforeend", "<div class=\"location\" id=\""
+                    + id
+                    + "\">"
+                    + "<button class=\"btn-danger deleteLocation\""
+                    + "onclick=\"removeWaypoint("
+                    + "'" + id + "'"
+                    + "," + "'" + placeArray[index].name + "'"
+                    + ");\">X</button>"
+                    + "  "
+                    + placeArray[index].name
+                    + "</div>");
+
+                calculateAndDisplayRoute(
+                    directionsDisplay, directionsService, markers, stepDisplay, map);
+                map.fitBounds(bounds);
             }
-
-            var id = placeArray[index].name + markers.length
-            document.getElementById("routes").insertAdjacentHTML(
-                "beforeend", "<div class=\"location\" id=\""
-                + id
-                + "\">"
-                + "<button class=\"btn-danger deleteLocation\""
-                + "onclick=\"removeWaypoint("
-                + "'" + id + "'"
-                + "," + "'" + placeArray[index].name + "'"
-                + ");\">X</button>"
-                + "  "
-                + placeArray[index].name
-                + "</div>");
-
-            calculateAndDisplayRoute(
-                directionsDisplay, directionsService, markers, stepDisplay, map);
-            map.fitBounds(bounds);
         }
     );
 }
 
 // This function sizes the map to be the full background of the page
-function drawMap() {
+function sizeMap() {
   var mapDiv = document.getElementById("map");
   mapDiv.style.width = (document.documentElement.clientWidth) + "px";
   mapDiv.style.height = (document.documentElement.clientHeight - 55)+ "px";
@@ -140,15 +158,13 @@ function drawMap() {
 // when the window is resized
 window.addEventListener(
   "resize", function() {
-      drawMap();
+      sizeMap();
   }
 );
 
 
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
     markerArray, stepDisplay, map) {
-    
-    waypts = [];
     for(i=1; i < placeArray.length - 1; i++) {
         waypts.push({
             location: placeArray[i].formatted_address,
@@ -205,7 +221,7 @@ function attachInstructionText(stepDisplay, marker, text, map) {
 }
 
 function removeWaypoint(id, placeName) {
-    waypts = [];
+    waypts.length = 0;
     var element = document.getElementById(id);
 
     element.parentNode.removeChild(element);
@@ -216,13 +232,80 @@ function removeWaypoint(id, placeName) {
         }
     }
 
+    drawMap();
+}
+
+var active = undefined;
+
+function sidebarClick(divObj) {
+  if(active != undefined) {
+    active.id="";
+  }
+  active = divObj;
+  active.id="active-route";
+}
+
+function loadMap(locations) {
+    // Param: locations, [string1, string2]
+    //      Contains addresses of the locations for the
+    //      map to be loaded
+
+    waypts.length = 0;
+    placeArray.length = 0;
+
+    for(i=0; i<locations.length-1; i++) {
+        geocoder.geocode(
+            { 'address': locations[i]}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    searchService.getDetails(
+                        {placeId: results[0].place_id}, function(results, status) {
+                            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                placeArray.push(results)
+                            }
+                        });
+                }
+            });
+    }
+
+    geocoder.geocode(
+            { 'address': locations[locations.length-1]}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    searchService.getDetails(
+                        {placeId: results[0].place_id}, function(results, status) {
+                            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                placeArray.push(results)
+                                for(i=0; i < placeArray.length; i++) {
+                                    var id = placeArray[i].name + markers.length
+                                    document.getElementById("routes").insertAdjacentHTML(
+                                        "beforeend", "<div class=\"location\" id=\""
+                                        + id
+                                        + "\">"
+                                        + "<button class=\"btn-danger deleteLocation\""
+                                        + "onclick=\"removeWaypoint("
+                                        + "'" + id + "'"
+                                        + "," + "'" + placeArray[i].name + "'"
+                                        + ");\">X</button>"
+                                        + "  "
+                                        + placeArray[i].name
+                                        + "</div>");
+                                }
+                                drawMap();
+                            }
+                        });
+                }
+            });
+
+    
+}
+
+function drawMap() {
     // Clear out the old markers.
     for (var i = 0, marker; marker = markers[i]; i++) {
         marker.setMap(null);
     }
 
     // For each place, get the icon, place name, and location.
-    markers = [];
+    markers.length = 0;
     var bounds = new google.maps.LatLngBounds();
     var index = 0;
     for (var i = 0, place; place = placeArray[i]; i++) {
@@ -250,14 +333,4 @@ function removeWaypoint(id, placeName) {
     calculateAndDisplayRoute(
         directionsDisplay, directionsService, markers, stepDisplay, map);
     map.fitBounds(bounds);
-}
-
-var active = undefined;
-
-function sidebarClick(divObj) {
-  if(active != undefined) {
-    active.id="";
-  }
-  active = divObj;
-  active.id="active-route";
 }
