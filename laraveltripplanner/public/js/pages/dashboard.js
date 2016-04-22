@@ -57,6 +57,7 @@ function initMap() {
 function initSearch() {
     searchDiv = document.getElementById("map-input");
     markers = [];
+    placeArray = [];
     
     // GLOBAL VARIABLE
     searchBox = new google.maps.places.SearchBox((searchDiv));
@@ -65,30 +66,30 @@ function initSearch() {
     // pick list. Retrieve the matching places for that item.
     google.maps.event.addListener(
         searchBox, 'places_changed', function() {
-            var places = searchBox.getPlaces();
+            places = searchBox.getPlaces();
 
-            document.getElementById("routes").insertAdjacentHTML(
-                "beforeend", "<div class=\"location\" id=\""
-                + places[0].name + markers.length
-                + "\">"
-                + "<button class=\"btn-danger deleteLocation\">X</button>"
-                + "  "
-                + places[0].name
-                + "</div>");
-            
             if (places.length == 0) {
                 return;
             }
 
+            // Add the place to the array
+            placeArray.push(places[0]);
+            var index = placeArray.length-1;
+            t = "";
+            for (var i=0; i < placeArray.length; i++) {
+                t += placeArray[i].name
+            }
+            alert(t);
             // Clear out the old markers.
-            // for (var i = 0, marker; marker = markers[i]; i++) {
-            //     marker.setMap(null);
-            // }
+            for (var i = 0, marker; marker = markers[i]; i++) {
+                marker.setMap(null);
+            }
 
             // For each place, get the icon, place name, and location.
-            // markers = [];
+            markers = [];
             var bounds = new google.maps.LatLngBounds();
-            for (var i = 0, place; place = places[i]; i++) {
+
+            for (var i = 0, place; place = placeArray[i]; i++) {
                 var image = {
                     url: place.icon,
                     size: new google.maps.Size(71, 71),
@@ -109,6 +110,21 @@ function initSearch() {
 
                 bounds.extend(place.geometry.location);
             }
+
+            var id = placeArray[index].name + markers.length
+            document.getElementById("routes").insertAdjacentHTML(
+                "beforeend", "<div class=\"location\" id=\""
+                + id
+                + "\">"
+                + "<button class=\"btn-danger deleteLocation\""
+                + "onclick=\"removeWaypoint("
+                + "'" + id + "'"
+                + "," + index
+                + ");\">X</button>"
+                + "  "
+                + placeArray[index].name
+                + "</div>");
+
             calculateAndDisplayRoute(
                 directionsDisplay, directionsService, markers, stepDisplay, map);
             map.fitBounds(bounds);
@@ -141,7 +157,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
     // Retrieve the start and end locations and create a DirectionsRequest
     directionsService.route({
         origin: markers[0].position,
-        destination: markers[1].position,
+        destination: markers[markers.length -1].position,
         travelMode: google.maps.TravelMode.DRIVING
     }, function(response, status) {
         // Route the directions and pass the response to a function to create
@@ -179,4 +195,53 @@ function attachInstructionText(stepDisplay, marker, text, map) {
         stepDisplay.setContent(text);
         stepDisplay.open(map, marker);
     });
+}
+
+function removeWaypoint(id, index) {
+    var element = document.getElementById(id);
+    
+    element.parentNode.removeChild(element);
+    if (index > -1) {
+        placeArray.splice(index, 1);
+    }
+    t = "";
+    for (var i=0; i < placeArray.length; i++) {
+        t += placeArray[i].name
+    }
+    alert(t);
+
+    // Clear out the old markers.
+    for (var i = 0, marker; marker = markers[i]; i++) {
+        marker.setMap(null);
+    }
+
+    // For each place, get the icon, place name, and location.
+    markers = [];
+    var bounds = new google.maps.LatLngBounds();
+    var index = 0;
+    for (var i = 0, place; place = placeArray[i]; i++) {
+        var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+        };
+
+        // Create a marker for each place.
+        var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location
+        });
+
+        markers.push(marker);
+
+        bounds.extend(place.geometry.location);
+    }
+
+    calculateAndDisplayRoute(
+        directionsDisplay, directionsService, markers, stepDisplay, map);
+    map.fitBounds(bounds);
 }
