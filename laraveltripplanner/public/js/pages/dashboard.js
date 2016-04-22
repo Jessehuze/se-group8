@@ -115,7 +115,7 @@ function initSearch() {
                 + "<button class=\"btn-danger deleteLocation\""
                 + "onclick=\"removeWaypoint("
                 + "'" + id + "'"
-                + "," + index
+                + "," + "'" + placeArray[index].name + "'"
                 + ");\">X</button>"
                 + "  "
                 + placeArray[index].name
@@ -203,13 +203,16 @@ function attachInstructionText(stepDisplay, marker, text, map) {
     });
 }
 
-function removeWaypoint(id, index) {
+function removeWaypoint(id, placeName) {
     waypts = [];
     var element = document.getElementById(id);
 
     element.parentNode.removeChild(element);
-    if (index > -1) {
-        placeArray.splice(index, 1);
+
+    for (i=0; i < placeArray.length; i++) {
+        if (placeArray[i].name == placeName) {
+            placeArray.splice(i, 1);
+        }
     }
 
     // Clear out the old markers.
