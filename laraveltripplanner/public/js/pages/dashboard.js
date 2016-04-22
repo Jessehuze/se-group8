@@ -75,11 +75,7 @@ function initSearch() {
             // Add the place to the array
             placeArray.push(places[0]);
             var index = placeArray.length-1;
-            t = "";
-            for (var i=0; i < placeArray.length; i++) {
-                t += placeArray[i].name
-            }
-            alert(t);
+
             // Clear out the old markers.
             for (var i = 0, marker; marker = markers[i]; i++) {
                 marker.setMap(null);
@@ -199,16 +195,11 @@ function attachInstructionText(stepDisplay, marker, text, map) {
 
 function removeWaypoint(id, index) {
     var element = document.getElementById(id);
-    
+
     element.parentNode.removeChild(element);
     if (index > -1) {
         placeArray.splice(index, 1);
     }
-    t = "";
-    for (var i=0; i < placeArray.length; i++) {
-        t += placeArray[i].name
-    }
-    alert(t);
 
     // Clear out the old markers.
     for (var i = 0, marker; marker = markers[i]; i++) {
