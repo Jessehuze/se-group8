@@ -52,33 +52,34 @@
               <div id="collapse1" class="panel-collapse collapse in">
                 <div class="panel-body sidebar-panel">
                   <!-- Data From Controller Goes Here -->
-                  <!-- foreach($data['routes'] as $route) -->
+                  <!-- @foreach($data['routes'] as $route) -->
+                  <!-- <?php //echo $groups; ?> -->
                   <div class="sidebar-row row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
                       Colorado to Timbucktoo
-                      <!-- @echo $name;      @echo $route['name']; -->
+                      <!-- <?php //echo $name; ?>      <?php //echo $route['name']; ?>-->
                     </div>
                     <div class="col-sm-6">
                       <div class="row">
-                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
                       </div>
                       <div class="row">
-                        9000 Miles<!-- @echo $route['distance']; -->
+                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
                       </div>
                     </div>
                   </div>
-                  <!-- endforeach -->
+                  <!-- @endforeach -->
                   <!-- DIV TO BE REMOVED, USED FOR TESTING VIEW -->
                   <div class="row sidebar-row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
-                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                      Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
                     </div>
                     <div class="col-sm-6">
                       <div class="row">
-                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
                       </div>
                       <div class="row">
-                        9000 Miles<!-- @echo $route['distance']; -->
+                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
                       </div>
                     </div>
                   </div>
@@ -99,32 +100,32 @@
               <div id="collapse2" class="panel-collapse collapse">
                 <div class="panel-body sidebar-panel">
                   <!-- Data From Controller Goes Here -->
-                  <!-- foreach($data['routes'] as $route) -->
+                  <!-- @foreach($data['routes'] as $route) -->
                   <div class="sidebar-row row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
-                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                      Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
                     </div>
                     <div class="col-sm-6">
                       <div class="row">
-                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
                       </div>
                       <div class="row">
-                        9000 Miles<!-- @echo $route['distance']; -->
+                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
                       </div>
                     </div>
                   </div>
-                  <!-- endforeach -->
+                  <!-- @endforeach -->
                   <!-- DIV TO BE REMOVED, USED FOR TESTING VIEW -->
                   <div class="row sidebar-row" onclick=sidebarClick(this)>
                     <div class="col-sm-6">
-                      Colorado to Timbucktoo<!-- @echo $route['name']; -->
+                      Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
                     </div>
                     <div class="col-sm-6">
                       <div class="row">
-                        5 Hr 30 Min<!-- @echo $route['time']; -->
+                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
                       </div>
                       <div class="row">
-                        9000 Miles<!-- @echo $route['distance']; -->
+                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
                       </div>
                     </div>
                   </div>
