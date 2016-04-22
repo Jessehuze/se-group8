@@ -6,8 +6,9 @@ function init() {
 
 // This function initializes the map
 function initMap() {
-    // Ensure the map is the right size before we initialize it
-    drawMap();
+  // Ensure the map is the right size before we initialize it
+  drawMap();
+
 
     // Get the mapDiv from the DOM
     mapDiv = document.getElementById("map");
@@ -17,7 +18,7 @@ function initMap() {
     // from google in the html of this page
     // Passed parameters are random and just to show
     // how to do so
-    map = new google.maps.Map(mapDiv, {  
+    map = new google.maps.Map(mapDiv, {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       center: {lat: 37.9565204, lng: -91.7768474},
       zoom: 15
@@ -58,7 +59,7 @@ function initSearch() {
     searchDiv = document.getElementById("map-input");
     markers = [];
     placeArray = [];
-    
+
     // GLOBAL VARIABLE
     searchBox = new google.maps.places.SearchBox((searchDiv));
 
@@ -130,19 +131,19 @@ function initSearch() {
 
 // This function sizes the map to be the full background of the page
 function drawMap() {
-    // Get the mapDiv from the DOM
-    mapDiv = document.getElementById("map");
-    mapDiv.style.width = (document.documentElement.clientWidth) + "px";
-    mapDiv.style.height = (document.documentElement.clientHeight - 55)+ "px";
+  var mapDiv = document.getElementById("map");
+  mapDiv.style.width = (document.documentElement.clientWidth) + "px";
+  mapDiv.style.height = (document.documentElement.clientHeight - 55)+ "px";
 }
 
 // This listener handles redrawing the map
 // when the window is resized
 window.addEventListener(
-    "resize", function() {
-        drawMap();
-    }
+  "resize", function() {
+      drawMap();
+  }
 );
+
 
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
     markerArray, stepDisplay, map) {
@@ -249,4 +250,14 @@ function removeWaypoint(id, placeName) {
     calculateAndDisplayRoute(
         directionsDisplay, directionsService, markers, stepDisplay, map);
     map.fitBounds(bounds);
+}
+
+var active = undefined;
+
+function sidebarClick(divObj) {
+  if(active != undefined) {
+    active.id="";
+  }
+  active = divObj;
+  active.id="active-route";
 }
