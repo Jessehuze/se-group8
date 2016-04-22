@@ -146,6 +146,14 @@ window.addEventListener(
 
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
     markerArray, stepDisplay, map) {
+    
+    waypts = [];
+    for(i=1; i < placeArray.length - 1; i++) {
+        waypts.push({
+            location: placeArray[i].formatted_address,
+            stopover: true
+          });
+    }
     // First, remove any existing markers from the map.
     for (var i = 0; i < markerArray.length; i++) {
         markerArray[i].setMap(null);
@@ -154,6 +162,8 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
     directionsService.route({
         origin: markers[0].position,
         destination: markers[markers.length -1].position,
+        waypoints: waypts,
+        optimizeWaypoints: false,
         travelMode: google.maps.TravelMode.DRIVING
     }, function(response, status) {
         // Route the directions and pass the response to a function to create
@@ -194,6 +204,7 @@ function attachInstructionText(stepDisplay, marker, text, map) {
 }
 
 function removeWaypoint(id, index) {
+    waypts = [];
     var element = document.getElementById(id);
 
     element.parentNode.removeChild(element);
