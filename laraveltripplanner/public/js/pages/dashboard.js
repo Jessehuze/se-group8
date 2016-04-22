@@ -253,6 +253,8 @@ function loadMap(locations) {
     waypts.length = 0;
     placeArray.length = 0;
 
+    document.getElementById('routes').innerHTML = '';
+
     for(i=0; i<locations.length-1; i++) {
         geocoder.geocode(
             { 'address': locations[i]}, function(results, status) {
