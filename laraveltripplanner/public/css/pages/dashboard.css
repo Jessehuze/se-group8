@@ -35,6 +35,10 @@ body {
     color: white !important;
 }
 
+a:hover {
+    text-decoration: none !important;
+}
+
 .location {
     background-color: white;
     font-weight: bold;
