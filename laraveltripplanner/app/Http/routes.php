@@ -10,20 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('login', 'PagesController@login');
+*/
 
 Route::get('example', 'PagesController@example');
-
-Route::get('dashboard', 'PagesController@dashboard');
-
-Route::get('signup', 'PagesController@signup');
-
-Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +29,17 @@ Route::get('logout', array('uses' => 'HomeController@doLogout'));
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+
+    Route::get('/', function () {
+      return view('welcome');
+    });
+
+    Route::get('dashboard', 'PagesController@dashboard');
+
+    Route::get('signup', 'PagesController@signup');
 });
 
-//Route::auth();
-
-//Route::get('/home', 'HomeController@index');

@@ -1,15 +1,27 @@
 <?php
-
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class User extends Authenticatable
 {
-    protected $primaryKey = 'username';
 
-    //Mass Assignment
-    protected $fillable = array('username', 'usr_pass', 'fname', 'lname');
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /* Old Relations That Need To Be Reworked
 
     //Relationships
     public function friends() {
@@ -35,4 +47,6 @@ class User extends Model
     public function routes() {
         return $this->belongsToMany('Route', 'route_access', 'userid', 'routid');
     }
+    */
 }
+?>

@@ -35,6 +35,27 @@ body {
     color: white !important;
 }
 
+a:hover {
+    text-decoration: none !important;
+}
+
+.location {
+    background-color: white;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-bottom:3px;
+}
+
+.deleteLocation {
+    align-items: left;
+    border-radius: 8px;
+}
+
+#searchPanel, #routes {
+    background-color: #eee;
+    margin-top: 5px;
+}
+
 /* default style of sidebar route buttons */
 .sidebar-row {
   background-color: grey;
@@ -75,10 +96,14 @@ body {
       }
 
 #map-input {
-    margin: 10px;
     font-size: 14px;
+    width: 100%;
 }
 
 #accordion {
     margin-top: 10px;
+}
+
+#save-route {
+    margin: 5px;
 }
