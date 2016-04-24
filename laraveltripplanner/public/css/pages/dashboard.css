@@ -35,7 +35,7 @@ body {
     color: white !important;
 }
 
-a:hover {
+a:link {
     text-decoration: none !important;
 }
 
