@@ -24,28 +24,17 @@ class PagesController extends Controller
       $friends = $user->friends()->get();
       $ownedGroups = $user->ownedGroups()->get();
       $ownedRoutes = $user->ownedRoutes()->get();
-      /*
-      //Don't Pass all of these variables as one array like this 
-      $userdata = array('user' => $user,
-                        'routes' => $routes,
-                        'groups' => $groups,
-                        'friends' => $friends,
-                        'ownedGroups' => $ownedGroups,
-                        'ownedRoutes' => $ownedRoutes);
-      */
+      
       /*
       //This is an example of using the Object Relational Mapping (ORM) to save a new
       //row in the group table of the database assuming you actually added values to
       //the column variables.
 
       $group = new Group;
-      $group->groupid = "";
-      $group->gname = "";
-      $group->ownerid = "";
+      $group->gname = "OG Group";
+      $group->user_id = $user->id;
       $group->save();
       */
-
-      //Variables To Pass To The View
 
       // This will route and pass data to the dashboard view
       return view('pages.dashboard', ['user' => $user, 
