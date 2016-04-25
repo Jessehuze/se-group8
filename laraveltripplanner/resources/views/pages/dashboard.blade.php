@@ -182,7 +182,7 @@
                 </div>
               </a>
               <div id="collapse5" class="panel-collapse collapse">
-                <!-- Groups You Belong To -->
+                <!-- All Groups -->
                 <div class="row">
                   @if (Auth::guest())
                     <div class="panel-body">Login to view groups</div>
@@ -191,6 +191,19 @@
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
                         <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?></div>
+                      @endforeach
+                    </div>
+                  @endif
+                </div>
+                <!-- Owned Groups -->
+                <div class="row">
+                  @if (Auth::guest())
+                    <div class="panel-body">Login to view groups</div>
+                  @else
+                    <div class="panel-body">
+                      <div class="row"><h4>Owned Groups</h4></div>
+                      @foreach($ownedGroups as $ownedGroup)
+                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $ownedGroup->gname; ?></div>
                       @endforeach
                     </div>
                   @endif

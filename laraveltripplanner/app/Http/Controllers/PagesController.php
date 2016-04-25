@@ -25,7 +25,6 @@ class PagesController extends Controller
       //Functional ORM Code For Grabbing Data From Database
       if (Auth::check()) {
         $routes = $user->routes()->get();
-        //$groups = $user->groups()->get();
         $groups = Group::all();
         $friends = $user->friends()->get();
         $ownedGroups = $user->ownedGroups()->get();
