@@ -6,19 +6,25 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Auth;
+
+use App\User;
+
+use App\Route;
+
 class PagesController extends Controller
 {
     public function dashboard()
     {
-      /*
-      //Non Functional ORM Code For Grabbing Data From Database
+      
+      //Functional ORM Code For Grabbing Data From Database
       $user = Auth::user();
-      $routes = User::routes();
-      $groups = User::groups();
-      $friends = User::friends();
-      $ownedGroups = User::ownedGroups();
-      $ownedRoutes = User::ownedRoutes();
-
+      $routes = $user->routes()->get();
+      $groups = $user->groups()->get();
+      $friends = $user->friends()->get();
+      $ownedGroups = $user->ownedGroups()->get();
+      $ownedRoutes = $user->ownedRoutes()->get();
+      /*
       //Don't Pass all of these variables as one array like this 
       $userdata = array('user' => $user,
                         'routes' => $routes,
@@ -40,14 +46,10 @@ class PagesController extends Controller
       */
 
       //Variables To Pass To The View
-      $routes = "routes";
-      $groups = "groups";
-      $friends = "friends";
-      $ownedGroups = "ownedGroups";
-      $ownedRoutes = "ownedRoutes";
 
       // This will route and pass data to the dashboard view
-      return view('pages.dashboard', ['routes' => $routes, 
+      return view('pages.dashboard', ['user' => $user, 
+                                      'routes' => $routes, 
                                       'groups' => $groups,
                                       'friends' => $friends,
                                       'ownedGroups' => $ownedGroups,

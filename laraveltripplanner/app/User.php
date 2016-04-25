@@ -21,32 +21,32 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /* Old Relations That Need To Be Reworked
+    // Old Relations That Need To Be Reworked
 
     //Relationships
+    
     public function friends() {
-        return $this->belongsToMany('User', 'friend_list', 'userid', 'friendid');
+        return $this->belongsToMany('App\User', 'friend_list', 'user_id', 'friend_id');
     }
-
+    
     public function friendTo() {
-        return $this->belongsToMany('User', 'friend_list', 'friendid', 'userid');
+        return $this->belongsToMany('App\User', 'friend_list', 'friend_id', 'user_id');
     }
-
+    
     public function groups() {
-        return $this->belongsToMany('Group', 'group_members', 'userid', 'groupid');
+        return $this->belongsToMany('App\Group', 'group_members', 'user_id', 'group_id');
     }
-
+    
     public function ownedGroups() {
-        return $this->hasMany('Group');
+        return $this->hasMany('App\Group');
     }
-
+    
     public function ownedRoutes() {
-        return $this->hasMany('Route');
+        return $this->hasMany('App\Route');
     }
-
+    
     public function routes() {
-        return $this->belongsToMany('Route', 'route_access', 'userid', 'routid');
+        return $this->belongsToMany('App\Route', 'route_access', 'user_id', 'route_id');
     }
-    */
 }
 ?>

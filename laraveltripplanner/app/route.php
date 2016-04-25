@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
-    protected $primaryKey = 'routeid';
  
     //Mass Assignment
-    protected $fillable = array('rname', 'ownerid');
+    protected $fillable = array('rname', 'user_id');
 
     //Relationships
     public function owner() {
-        return $this->belongsTo('User');
+        return $this->belongsTo('User', 'User');
     }
 
     public function users() {

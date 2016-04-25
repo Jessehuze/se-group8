@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-  protected $primaryKey = 'groupid';
-
   //Mass Assignment
-  protected $fillable = array('gname', 'ownerid');
+  protected $fillable = array('gname', 'user_id');
 
   //Relationships
   public function owner() {
