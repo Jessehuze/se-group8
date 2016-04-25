@@ -188,7 +188,10 @@
                     <div class="panel-body">Login to view groups</div>
                   @else
                     <div class="panel-body">
-                      <div class="row">All Groups</div>
+                      <div class="row"><h4>All Groups</h4></div>
+                      @foreach($groups as $group)
+                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?></div>
+                      @endforeach
                     </div>
                   @endif
                 </div>

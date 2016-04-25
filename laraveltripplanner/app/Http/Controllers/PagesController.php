@@ -25,7 +25,8 @@ class PagesController extends Controller
       //Functional ORM Code For Grabbing Data From Database
       if (Auth::check()) {
         $routes = $user->routes()->get();
-        $groups = $user->groups()->get();
+        //$groups = $user->groups()->get();
+        $groups = Group::all();
         $friends = $user->friends()->get();
         $ownedGroups = $user->ownedGroups()->get();
         $ownedRoutes = $user->ownedRoutes()->get();
@@ -37,17 +38,6 @@ class PagesController extends Controller
         $ownedGroups = null;
         $ownedRoutes = null;
       }
-
-      /*
-      //This is an example of using the Object Relational Mapping (ORM) to save a new
-      //row in the group table of the database assuming you actually added values to
-      //the column variables.
-
-      $group = new Group;
-      $group->gname = "OG Group";
-      $group->user_id = $user->id;
-      $group->save();
-      */
 
       // This will route and pass data to the dashboard view
       return view('pages.dashboard', ['user' => $user, 
