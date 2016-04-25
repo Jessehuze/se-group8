@@ -13,13 +13,13 @@ class CreateFriendListTable extends Migration
     public function up()
     {
         Schema::create('friend_list', function (Blueprint $table) {
-            $table->string('userid')->foreign()
-                  ->references('username')->on('User')
+            $table->string('user_id')->foreign()
+                  ->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->string('friendid')->foreign()
-                  ->references('username')->on('User')
-                  ->onDelete('cascade')->onUpdate('cascade')->onUpdate('cascade');
-            $table->primary(['userid', 'friendid']);
+            $table->string('friend_id')->foreign()
+                  ->references('id')->on('users')
+                  ->onDelete('cascade')->onUpdate('cascade');
+            $table->primary(['user_id', 'friend_id']);
 
             $table->timestamps();
         });

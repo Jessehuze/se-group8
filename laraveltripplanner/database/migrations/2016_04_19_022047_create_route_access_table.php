@@ -13,14 +13,14 @@ class CreateRouteAccessTable extends Migration
     public function up()
     {
         Schema::create('route_access', function (Blueprint $table) {
-            $table->string('userid')->foreign()
-                  ->references('username')->on('User')
+            $table->string('user_id')->foreign()
+                  ->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('routeid')->unsigned()->foreign()
-                  ->references('routeid')->on('Route')
+            $table->integer('route_id')->unsigned()->foreign()
+                  ->references('id')->on('routes')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->char('modrights', 1);
-            $table->primary(['userid', 'routeid']);
+            $table->primary(['user_id', 'route_id']);
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@
       type="text/javascript"
       async defer></script>
 
-    <script src="./js/pages/dashboard.js" 
+    <script src="./js/pages/dashboard.js"
       type="text/javascript"
       async defer></script>
 
@@ -190,7 +190,7 @@
                     <div class="panel-body">
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
-                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> <i>owned by</i> <?php //dd($group->owner()->get()); ?></div>
+                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> <i>owned by</i> <?php dd($group->owner()); ?></div>
                       @endforeach
                     </div>
                   @endif
@@ -233,7 +233,7 @@
                         <i class="fa fa-btn fa-user"></i>Create
                       </button>
                     </div>
-                  </div> 
+                  </div>
                 </form>
                 <!-- End Create Group -->
                 @endif

@@ -12,13 +12,13 @@ class CreateWaypointTable extends Migration
      */
     public function up()
     {
-        Schema::create('Waypoint', function (Blueprint $table) {
-            $table->increments('waypointid');
+        Schema::create('waypoints', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('routeid')->unsigned()->foreign()
-                  ->references('routeid')->on('Route')
+                  ->references('id')->on('routes')
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->float('lat');
-            $table->float('lon');
+            $table->integer('index');
+            $table->string('addr');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateWaypointTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Waypoint');
+        Schema::drop('waypoints');
     }
 }

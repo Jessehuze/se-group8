@@ -12,11 +12,11 @@ class CreateGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('Group', function (Blueprint $table) {
-            $table->increments('groupid');
+        Schema::create('groups', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('gname');
-            $table->string('ownerid')->foreign()
-                  ->references('username')->on('User')
+            $table->string('user_id')->foreign()
+                  ->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateGroupTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Group');
+        Schema::drop('groups');
     }
 }
