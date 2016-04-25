@@ -12,14 +12,17 @@ use App\User;
 
 use App\Route;
 
+use App\Group;
+
+use Illuminate\Support\Facades\Redirect;
+
 class PagesController extends Controller
 {
     public function dashboard()
     {
-      
-      //Functional ORM Code For Grabbing Data From Database
       $user = Auth::user();
 
+      //Functional ORM Code For Grabbing Data From Database
       if (Auth::check()) {
         $routes = $user->routes()->get();
         $groups = $user->groups()->get();
@@ -53,6 +56,18 @@ class PagesController extends Controller
                                       'friends' => $friends,
                                       'ownedGroups' => $ownedGroups,
                                       'ownedRoutes' => $ownedRoutes]);
+    }
+
+    public function createGroup(Request $request)
+    {
+      $user = Auth::user();
+      $group = new Group;
+      //dd($request->input('gname'));
+      $group->gname = $request->input('gname');
+      $group->user_id = $user->id;
+      $group->save();
+
+      return Redirect::action('PagesController@dashboard');
     }
 
     public function example()

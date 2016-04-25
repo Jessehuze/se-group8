@@ -182,7 +182,45 @@
                 </div>
               </a>
               <div id="collapse5" class="panel-collapse collapse">
-                <div class="panel-body">Data From Controller Goes Here</div>
+                <!-- Groups You Belong To -->
+                <div class="row">
+                  @if (Auth::guest())
+                    <div class="panel-body">Login to view groups</div>
+                  @else
+                    <div class="panel-body">
+                      <div class="row">All Groups</div>
+                    </div>
+                  @endif
+                </div>
+                @if (Auth::check())
+                <!-- Create Group -->
+                <form class="form-horizontal" role="form" method="POST" action="createGroup">
+                  {!! csrf_field() !!}
+                  <div class="row">
+                    <div class="panel-body">
+                      <h4>Create Group</h4>
+
+                      <!-- Group Name Input-->
+                      <div class="form-group{{ $errors->has('gname') ? ' has-error' : '' }}">
+                        <label class="control-label col-sm-4">Group Name</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" name="gname">
+                          @if ($errors->has('gname'))
+                            <span class="help-block">
+                              <strong>{{ $errors->first('gname') }}</strong>
+                            </span>
+                          @endif
+                        </div>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-btn fa-user"></i>Create
+                      </button>
+                    </div>
+                  </div> 
+                </form>
+                <!-- End Create Group -->
+                @endif
               </div>
             </div>
           </div>

@@ -21,8 +21,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Old Relations That Need To Be Reworked
-
     //Relationships
     
     public function friends() {
