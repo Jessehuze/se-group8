@@ -12,11 +12,11 @@ class CreateRouteTable extends Migration
      */
     public function up()
     {
-        Schema::create('Route', function (Blueprint $table) {
-            $table->increments('routeid');
+        Schema::create('routes', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('rname');
-            $table->string('ownerid')->foreign()
-                  ->references('username')->on('User')
+            $table->string('user_id')->foreign()
+                  ->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateRouteTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Route');
+        Schema::drop('routes');
     }
 }
