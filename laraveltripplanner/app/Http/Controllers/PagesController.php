@@ -51,7 +51,6 @@ class PagesController extends Controller
     {
       $user = Auth::user();
       $group = new Group;
-      //dd($request->input('gname'));
       $group->gname = $request->input('gname');
       $group->user_id = $user->id;
       $group->save();

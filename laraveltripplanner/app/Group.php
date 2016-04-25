@@ -11,14 +11,14 @@ class Group extends Model
 
   //Relationships
   public function owner() {
-      return $this->belongsTo('User');
+      return $this->belongsTo('App\User');
   }
 
   public function members() {
-      return $this->belongsToMany('User', 'group_members', 'groupid', 'userid');
+      return $this->belongsToMany('App\User', 'group_members', 'group_id', 'user_id');
   }
 
   public function routes() {
-      return $this->belongsToMany('Route', 'group_route_access', 'groupid', 'routeid');
+      return $this->belongsToMany('App\Route', 'group_route_access', 'group_id', 'route_id');
   }
 }

@@ -190,7 +190,7 @@
                     <div class="panel-body">
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
-                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?></div>
+                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> <i>owned by</i> <?php //dd($group->owner()->get()); ?></div>
                       @endforeach
                     </div>
                   @endif
@@ -198,7 +198,7 @@
                 <!-- Owned Groups -->
                 <div class="row">
                   @if (Auth::guest())
-                    <div class="panel-body">Login to view groups</div>
+                    <div class="panel-body"></div>
                   @else
                     <div class="panel-body">
                       <div class="row"><h4>Owned Groups</h4></div>
