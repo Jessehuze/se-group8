@@ -121,54 +121,73 @@
                   </h4>
                 </div>
               </a>
+              <!-- Shared Routes Accordion -->
               <div id="collapse3" class="panel-collapse collapse">
-                <div class="panel-body sidebar-panel">
-                  <!-- Data From Controller Goes Here -->
-                  <!-- foreach($data['routes'] as $route) -->
-                  <div class="sidebar-row row" onclick=sidebarClick(this)>
-                    <div class="col-sm-6">
-                      Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="row">
-                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                <!-- Routes You Shared -->
+                <div class="row">
+                  <div class="panel-body sidebar-panel">
+                    <!-- Data From Controller Goes Here -->
+                    <!-- foreach($data['routes'] as $route) -->
+                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                      <div class="col-sm-6">
+                        Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
                       </div>
-                      <div class="row">
-                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
+                      <div class="col-sm-6">
+                        <div class="row">
+                          5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                        </div>
+                        <div class="row">
+                          9000 Miles<!-- <?php //echo $route['distance']; ?>-->
+                        </div>
                       </div>
                     </div>
+                    <!-- endforeach -->
+                    <!-- DIV TO BE REMOVED, USED FOR TESTING VIEW -->
+                    <div class="row sidebar-row" onclick=sidebarClick(this)>
+                      <div class="col-sm-6">
+                        Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="row">
+                          5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                        </div>
+                        <div class="row">
+                          9000 Miles<!-- <?php //echo $route['distance']; ?>-->
+                        </div>
+                      </div>
+                    </div>
+                    <!-- END OF DIV TO BE REMOVED -->
                   </div>
-                  <!-- endforeach -->
-                  <!-- DIV TO BE REMOVED, USED FOR TESTING VIEW -->
-                  <div class="row sidebar-row" onclick=sidebarClick(this)>
-                    <div class="col-sm-6">
-                      Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="row">
-                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
-                      </div>
-                      <div class="row">
-                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
-                      </div>
-                    </div>
-                  </div>
-                  <!-- END OF DIV TO BE REMOVED -->
+                </div>
+                <!-- Routes Shared With You -->
+                <div class="row">
+
                 </div>
               </div>
             </div>
-            <!-- Routes Shared With You Accordion  -->
+            <!-- Friends Accordion  -->
             <div class="panel panel-default">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
                 <div class="panel-heading panelheaders">
                   <h4 class="panel-title">
                     <span class="glyphicon glyphicon-list"></span>
-                    Routes Shared With You
+                    Friends
                   </h4>
                 </div>
               </a>
               <div id="collapse4" class="panel-collapse collapse">
-                <div class="panel-body">Data From Controller Goes Here</div>
+                <div class="row">
+                    @if (Auth::guest())
+                      <div class="panel-body">Login to view friends</div>
+                    @else
+                      <div class="panel-body">
+                        <div class="row"><h4>Your Friends</h4></div>
+                        @foreach($friends as $friend)
+                          <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $friend->name; ?></div>
+                        @endforeach
+                      </div>
+                    @endif
+                </div>
               </div>
             </div>
             <!-- Groups Accordion -->
