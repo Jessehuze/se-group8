@@ -14,7 +14,7 @@ class CreateWaypointTable extends Migration
     {
         Schema::create('waypoints', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('routeid')->unsigned()->foreign()
+            $table->integer('route_id')->unsigned()->foreign()
                   ->references('id')->on('routes')
                   ->onDelete('cascade')->onUpdate('cascade');
             $table->integer('index');
