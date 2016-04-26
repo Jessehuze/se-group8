@@ -50,23 +50,41 @@
                 </div>
               </a>
               <div id="collapse1" class="panel-collapse collapse">
-                <div id="create-route-interface">
-                  <div class="panel-body" id="route-name">
-                    <label for="route-name">Route Name:</label>
-                    <input id="route-name" type="text">
-                  </div>
-                  <div class="panel-body" id="routes">
-                  </div>
-                  <div class="panel-body" id="searchPanel">
-                    <label for="map-input">Add Waypoint:</label>
-                    <input id="map-input" class="controls" type="text" placeholder="Search Box">
-                  </div>
-                  <div class="panel-body" id="warnings-panel">
-                  </div>
-                  <div id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">
-                  Save Route
-                  </div>
+
+                <!-- Map Stuff -->
+                <div class="panel-body" id="searchPanel">
+                  <label for="map-input">Add Waypoint:</label>
+                  <input id="map-input" class="controls" type="text" placeholder="Search Box">
                 </div>
+                <div class="panel-body" id="warnings-panel"></div>
+                <div class="panel-body" id="routes"></div>
+
+                @if (Auth::guest())
+                      <div class="panel-body">Login to save route</div>
+                @else
+                  <!-- Create Route Form-->
+                  <form class="form-horizontal" role="form" method="POST" action="createRoute">
+                    {!! csrf_field() !!}
+                    <div class="row">
+                      <div class="panel-body">
+                        <!-- Route Name Input-->
+                        <div class="form-group{{ $errors->has('rname') ? ' has-error' : '' }}">
+                          <label class="control-label col-sm-4">Route Name</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" name="rname">
+                            @if ($errors->has('rname'))
+                              <span class="help-block">
+                                <strong>{{ $errors->first('rname') }}</strong>
+                              </span>
+                            @endif
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- End Create Route Form-->
+                @endif
               </div>
             </div>
             <!-- End New Route Accordion -->
@@ -83,24 +101,26 @@
               </a>
               <div id="collapse2" class="panel-collapse collapse in">
                 <div class="panel-body sidebar-panel">
-                  <!-- Data From Controller Goes Here -->
-                  <!-- foreach($data['routes'] as $route) -->
-                  <!-- <?php //echo $groups; ?> -->
-                  <div class="sidebar-row row" onclick=sidebarClick(this)>
-                    <div class="col-sm-6">
-                      Colorado to Timbucktoo
-                      <!-- <?php //echo $name; ?>      <?php //echo $route['name']; ?>-->
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="row">
-                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                  @if (Auth::guest())
+                    <div class="panel-body">Login to view your routes</div>
+                  @else
+                    <!-- Data From Controller Goes Here -->
+                    @foreach($user->ownedRoutes as $route)
+                      <div class="sidebar-row row" onclick=sidebarClick(this)>
+                        <div class="col-sm-6">
+                          <?php echo $route->rname ?>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="row">
+                            5 Hr 30 Min
+                          </div>
+                          <div class="row">
+                            9000 Miles
+                          </div>
+                        </div>
                       </div>
-                      <div class="row">
-                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
-                      </div>
-                    </div>
-                  </div>
-                  <!-- endforeach -->
+                    @endforeach
+                  @endif
                 </div>
               </div>
             </div>
@@ -123,26 +143,83 @@
                       <div class="panel-body">Login to view shared routes</div>
                     @else
                       <!-- Routes You Shared -->
-                      <div class="row"><h4>Routes You Shared</h4></div>
+                      <div class="row"><h4>Friends' Routes</h4></div>
                       <!-- Data From Controller Goes Here -->
                       <!-- foreach($data['routes'] as $route) -->
-                      <div class="sidebar-row row" onclick=sidebarClick(this)>
-                        <div class="col-sm-6">
-                          Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="row">
-                            5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                      @foreach($friends as $friend)
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <a data-toggle="collapse" href="#collapsefriend{{$friend->id}}">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <?php echo $friend->name; ?>
+                                </h4>
+                              </div>
+                            </a>
+                            <div id="collapsefriend{{$friend->id}}" class="panel-collapse collapse">
+                              <ul class="list-group">
+                                @foreach($friend->ownedRoutes as $route)
+                                  <?php //dd($friend->ownedRoutes) ?>
+                                  <li class="list-group-item">
+                                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                                      <div class="col-sm-6">
+                                        <?php echo $route->rname ?>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          5 Hr 30 Min
+                                        </div>
+                                        <div class="row">
+                                          9000 Miles
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
                           </div>
-                          <div class="row">
-                            9000 Miles<!-- <?php //echo $route['distance']; ?>-->
-                          </div>
                         </div>
-                      </div>
-                      <!-- endforeach -->
+                      @endforeach
 
-                      <!-- Routes Shared With You -->
-                      <div class="row"><h4>Routes Shared With You</h4></div>
+
+                      <!-- Your Groups' Routes -->
+                      <div class="row"><h4>Your Groups' Routes</h4></div>
+                      @foreach($ownedGroups as $ownedGroup)
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <a data-toggle="collapse" href="#collapsegroup{{$ownedGroup->id}}">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <?php echo $ownedGroup->gname; ?>
+                                </h4>
+                              </div>
+                            </a>
+                            <div id="collapsegroup{{$ownedGroup->id}}" class="panel-collapse collapse">
+                              <ul class="list-group">
+                                @foreach($ownedGroup->owner->ownedRoutes as $route)
+                                  <?php //dd($friend->ownedRoutes) ?>
+                                  <li class="list-group-item">
+                                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                                      <div class="col-sm-6">
+                                        <?php echo $route->rname ?>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          5 Hr 30 Min
+                                        </div>
+                                        <div class="row">
+                                          9000 Miles
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      @endforeach
                     @endif
                   </div>
                 </div>
@@ -284,9 +361,7 @@
                           </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">
-                          <i class="fa fa-btn fa-user"></i>Create
-                        </button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                       </div>
                     </div>
                   </form>

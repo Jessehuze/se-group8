@@ -40,6 +40,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('dashboard', 'PagesController@dashboard');
 
+    Route::post('createRoute', 'PagesController@createRoute');
+
     Route::post('createGroup', 'PagesController@createGroup');
 
     Route::post('joinGroup', 'PagesController@joinGroup');
