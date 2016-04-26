@@ -84,23 +84,22 @@
               <div id="collapse2" class="panel-collapse collapse in">
                 <div class="panel-body sidebar-panel">
                   <!-- Data From Controller Goes Here -->
-                  <!-- foreach($data['routes'] as $route) -->
-                  <!-- <?php //echo $groups; ?> -->
-                  <div class="sidebar-row row" onclick=sidebarClick(this)>
-                    <div class="col-sm-6">
-                      Colorado to Timbucktoo
-                      <!-- <?php //echo $name; ?>      <?php //echo $route['name']; ?>-->
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="row">
-                        5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                  @foreach($user->ownedRoutes as $route)
+                    <!-- <?php //echo $groups; ?> -->
+                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                      <div class="col-sm-6">
+                        <?php echo $route->rname ?>
                       </div>
-                      <div class="row">
-                        9000 Miles<!-- <?php //echo $route['distance']; ?>-->
+                      <div class="col-sm-6">
+                        <div class="row">
+                          5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                        </div>
+                        <div class="row">
+                          9000 Miles<!-- <?php //echo $route['distance']; ?>-->
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <!-- endforeach -->
+                  @endforeach
                 </div>
               </div>
             </div>
