@@ -121,6 +121,29 @@
                       <div class="row"><h4>Friends' Routes</h4></div>
                       <!-- Data From Controller Goes Here -->
                       <!-- foreach($data['routes'] as $route) -->
+                        @foreach($friends as $friend)
+                          <div class="panel-group">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#collapse1">
+                                    <?php echo $friend->name; ?>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapse1" class="panel-collapse collapse">
+                                <ul class="list-group">
+                                  @foreach($friend->ownedRoutes as $route)
+                                    <li class="list-group-item">
+                                      <?php echo $route->name; ?>
+                                    </li>
+                                  @endforeach
+                                </ul>
+                              </div>
+                            </div>
+                          </div
+                        @endforeach
+
                       <div class="sidebar-row row" onclick=sidebarClick(this)>
                         <div class="col-sm-6">
                           Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
@@ -188,7 +211,7 @@
                         @foreach($friends as $friend)
                           <div class="row">
                             <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $friend->name; ?></div>
-                            <div class="col-sm-3"> 
+                            <div class="col-sm-3">
                               <form class="form-horizontal" role="form" method="POST" action="removeFriend">
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="user_id" value="{{$friend->id}}">
@@ -223,8 +246,8 @@
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
                         <div class="row">
-                          <div class="col-sm-10"> 
-                             &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp; 
+                          <div class="col-sm-10">
+                             &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp;
                              <?php echo ($group->owner->id == $user->id ? 'you!' : $group->owner->name); ?>
                           </div>
                           <div class="col-sm-2">
