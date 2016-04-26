@@ -118,7 +118,7 @@
                       <div class="panel-body">Login to view shared routes</div>
                     @else
                       <!-- Routes You Shared -->
-                      <div class="row"><h4>Routes You Shared</h4></div>
+                      <div class="row"><h4>Friends' Routes</h4></div>
                       <!-- Data From Controller Goes Here -->
                       <!-- foreach($data['routes'] as $route) -->
                       <div class="sidebar-row row" onclick=sidebarClick(this)>
@@ -137,7 +137,7 @@
                       <!-- endforeach -->
 
                       <!-- Routes Shared With You -->
-                      <div class="row"><h4>Routes Shared With You</h4></div>
+                      <div class="row"><h4>Your Groups' Routes</h4></div>
                     @endif
                   </div>
                 </div>
