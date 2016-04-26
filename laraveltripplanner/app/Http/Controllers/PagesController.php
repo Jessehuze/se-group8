@@ -79,7 +79,6 @@ class PagesController extends Controller
     {
       $user = Auth::user();
       $friendId = $request->input('user_id');
-      //dd($request->input('user_id'));
       $user->friends()->detach($friendId);
 
       return Redirect::action('PagesController@dashboard');
