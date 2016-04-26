@@ -83,23 +83,26 @@
               </a>
               <div id="collapse2" class="panel-collapse collapse in">
                 <div class="panel-body sidebar-panel">
-                  <!-- Data From Controller Goes Here -->
-                  @foreach($user->ownedRoutes as $route)
-                    <!-- <?php //echo $groups; ?> -->
-                    <div class="sidebar-row row" onclick=sidebarClick(this)>
-                      <div class="col-sm-6">
-                        <?php echo $route->rname ?>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="row">
-                          5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
+                  @if (Auth::guest())
+                    <div class="panel-body">Login to view your routes</div>
+                  @else
+                    <!-- Data From Controller Goes Here -->
+                    @foreach($user->ownedRoutes as $route)
+                      <div class="sidebar-row row" onclick=sidebarClick(this)>
+                        <div class="col-sm-6">
+                          <?php echo $route->rname ?>
                         </div>
-                        <div class="row">
-                          9000 Miles<!-- <?php //echo $route['distance']; ?>-->
+                        <div class="col-sm-6">
+                          <div class="row">
+                            5 Hr 30 Min
+                          </div>
+                          <div class="row">
+                            9000 Miles
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  @endforeach
+                    @endforeach
+                  @endif
                 </div>
               </div>
             </div>
@@ -128,19 +131,31 @@
                       @foreach($friends as $friend)
                         <div class="panel-group">
                           <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapsefriend{{$friend->id}}">
+                            <a data-toggle="collapse" href="#collapsefriend{{$friend->id}}">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
                                   <?php echo $friend->name; ?>
-                                </a>
-                              </h4>
-                            </div>
+                                </h4>
+                              </div>
+                            </a>
                             <div id="collapsefriend{{$friend->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($friend->ownedRoutes as $route)
                                   <?php //dd($friend->ownedRoutes) ?>
                                   <li class="list-group-item">
-                                    <?php echo $route->rname; ?>
+                                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                                      <div class="col-sm-6">
+                                        <?php echo $route->rname ?>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          5 Hr 30 Min
+                                        </div>
+                                        <div class="row">
+                                          9000 Miles
+                                        </div>
+                                      </div>
+                                    </div>
                                   </li>
                                 @endforeach
                               </ul>
@@ -155,19 +170,31 @@
                       @foreach($ownedGroups as $ownedGroup)
                         <div class="panel-group">
                           <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapsegroup{{$ownedGroup->id}}">
+                            <a data-toggle="collapse" href="#collapsegroup{{$ownedGroup->id}}">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
                                   <?php echo $ownedGroup->gname; ?>
-                                </a>
-                              </h4>
-                            </div>
+                                </h4>
+                              </div>
+                            </a>
                             <div id="collapsegroup{{$ownedGroup->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($ownedGroup->owner->ownedRoutes as $route)
                                   <?php //dd($friend->ownedRoutes) ?>
                                   <li class="list-group-item">
-                                    <?php echo $route->rname; ?>
+                                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                                      <div class="col-sm-6">
+                                        <?php echo $route->rname ?>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          5 Hr 30 Min
+                                        </div>
+                                        <div class="row">
+                                          9000 Miles
+                                        </div>
+                                      </div>
+                                    </div>
                                   </li>
                                 @endforeach
                               </ul>
