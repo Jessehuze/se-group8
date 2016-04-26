@@ -279,9 +279,7 @@
                           </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">
-                          <i class="fa fa-btn fa-user"></i>Create
-                        </button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                       </div>
                     </div>
                   </form>
