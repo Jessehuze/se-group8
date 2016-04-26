@@ -38,9 +38,11 @@ class PagesController extends Controller
       else {
         $routes = null;
         $groups = null;
+        $users = null;
         $friends = null;
         $ownedGroups = null;
         $ownedRoutes = null;
+        $friendIds = null;
       }
 
       // This will route and pass data to the dashboard view
