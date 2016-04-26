@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
- 
+
     //Mass Assignment
     protected $fillable = array('rname', 'user_id');
 
