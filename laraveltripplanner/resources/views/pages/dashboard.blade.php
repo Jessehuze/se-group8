@@ -150,23 +150,32 @@
                         </div>
                       @endforeach
 
-                      <div class="sidebar-row row" onclick=sidebarClick(this)>
-                        <div class="col-sm-6">
-                          Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="row">
-                            5 Hr 30 Min<!-- <?php //echo $route['time']; ?>-->
-                          </div>
-                          <div class="row">
-                            9000 Miles<!-- <?php //echo $route['distance']; ?>-->
-                          </div>
-                        </div>
-                      </div>
-                      <!-- endforeach -->
 
                       <!-- Routes Shared With You -->
                       <div class="row"><h4>Your Groups' Routes</h4></div>
+                      @foreach($ownedGroups as $ownedGroup)
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapsegroup{{$ownedGroup->id}}">
+                                  <?php echo $ownedGroup->gname; ?>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapsefriend{{$ownedGroup->id}}" class="panel-collapse collapse">
+                              <ul class="list-group">
+                                @foreach($ownedGroup->owner->ownedRoutes as $route)
+                                  <?php //dd($friend->ownedRoutes) ?>
+                                  <li class="list-group-item">
+                                    <?php echo $route->rname; ?>
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      @endforeach
                     @endif
                   </div>
                 </div>
