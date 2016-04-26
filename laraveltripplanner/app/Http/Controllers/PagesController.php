@@ -26,6 +26,7 @@ class PagesController extends Controller
       if (Auth::check()) {
         $routes = $user->routes()->get();
         $groups = Group::all();
+        $users = User::all();
         $friends = $user->friends()->get();
         $ownedGroups = $user->ownedGroups()->get();
         $ownedRoutes = $user->ownedRoutes()->get();
@@ -39,7 +40,8 @@ class PagesController extends Controller
       }
 
       // This will route and pass data to the dashboard view
-      return view('pages.dashboard', ['user' => $user, 
+      return view('pages.dashboard', ['user' => $user,
+                                      'users' => $users,
                                       'routes' => $routes, 
                                       'groups' => $groups,
                                       'friends' => $friends,
@@ -63,7 +65,7 @@ class PagesController extends Controller
     public function addFriend(Request $request)
     {
       $user = Auth::user();
-      
+      $user->friends()->sync(array($request->input('user_id')));
 
       return Redirect::action('PagesController@dashboard');
     }

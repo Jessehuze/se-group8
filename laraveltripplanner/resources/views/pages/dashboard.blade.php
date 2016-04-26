@@ -176,14 +176,44 @@
                 </div>
               </a>
               <div id="collapse4" class="panel-collapse collapse">
+                <!-- All Users  -->
                 <div class="row">
                     @if (Auth::guest())
                       <div class="panel-body">Login to view friends</div>
                     @else
                       <div class="panel-body">
+                        <div class="row"><h4>All Users</h4></div>
+                        @foreach($users as $user)
+                          <div class="row">
+                            <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $user->name; ?></div>
+                            <div class="col-sm-3"> 
+                              <form class="form-horizontal" role="form" method="POST" action="addFriend">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                <button type="submit" class="btn btn-success">Add</button>
+                              </form>
+                            </div>
+                          </div>
+                        @endforeach
+                      </div>
+                    @endif
+                </div>
+                <!-- Your Friends  -->
+                <div class="row">
+                    @if (Auth::guest())
+                      <div class="panel-body"></div>
+                    @else
+                      <div class="panel-body">
                         <div class="row"><h4>Your Friends</h4></div>
                         @foreach($friends as $friend)
-                          <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $friend->name; ?></div>
+                          <div class="row">
+                            <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $friend->name; ?></div>
+                            <div class="col-sm-3"> 
+                              <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-btn fa-user"></i>Remove
+                              </button>
+                            </div>
+                          </div>
                         @endforeach
                       </div>
                     @endif

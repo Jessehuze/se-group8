@@ -42,6 +42,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('createGroup', 'PagesController@createGroup');
 
+    Route::post('addFriend', 'PagesController@addFriend');
+
     Route::get('signup', 'PagesController@signup');
 });
 
