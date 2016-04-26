@@ -297,7 +297,7 @@ function loadMap(locations) {
                 }
             });
 
-    
+
 }
 
 function drawMap() {

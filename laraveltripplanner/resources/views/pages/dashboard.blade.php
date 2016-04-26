@@ -50,18 +50,23 @@
                 </div>
               </a>
               <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body" id="route-name">
-                  <label for="route-name">Route Name</label>
-                  <input id="route-name" type="text">
+                <div id="create-route-interface">
+                  <div class="panel-body" id="route-name">
+                    <label for="route-name">Route Name:</label>
+                    <input id="route-name" type="text">
+                  </div>
+                  <div class="panel-body" id="routes">
+                  </div>
+                  <div class="panel-body" id="searchPanel">
+                    <label for="map-input">Add Waypoint:</label>
+                    <input id="map-input" class="controls" type="text" placeholder="Search Box">
+                  </div>
+                  <div class="panel-body" id="warnings-panel">
+                  </div>
+                  <div id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">
+                  Save Route
+                  </div>
                 </div>
-                <div class="panel-body" id="routes">
-                </div>
-                <div class="panel-body" id="searchPanel">
-                  <input id="map-input" class="controls" type="text" placeholder="Search Box">
-                </div>
-                <div class="panel-body" id="warnings-panel">
-                </div>
-                <button type="button" id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">Save Route</button>
               </div>
             </div>
             <!-- End New Route Accordion -->

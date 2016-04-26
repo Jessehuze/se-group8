@@ -40,10 +40,14 @@ a:link {
 }
 
 .location {
-    background-color: white;
+    background-color: yellowgreen;
     font-weight: bold;
-    margin-top: 3px;
-    margin-bottom:3px;
+    margin-top: 5px;
+    margin-bottom:5px;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .deleteLocation {
@@ -51,9 +55,12 @@ a:link {
     border-radius: 8px;
 }
 
-#searchPanel, #routes {
-    background-color: #eee;
-    margin-top: 5px;
+#routes {
+    margin-bottom: 10px;
+}
+
+#route-name {
+  width: 100%;
 }
 
 /* default style of sidebar route buttons */
@@ -72,6 +79,7 @@ a:link {
 .sidebar-row:hover {
   background-color: yellowgreen;
   color: white;
+  cursor: pointer;
 }
 
 .sidebar-panel {
@@ -105,5 +113,42 @@ a:link {
 }
 
 #save-route {
-    margin: 5px;
+    padding: 5px;
+    margin-left: 20%;
+    margin-bottom: 5%;
+    color: white;
+    background: green;
+    display: inline-block;
+    width: 60%;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px 4px #000000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#save-route:hover {
+  background: yellowgreen;
+}
+
+#create-route-interface {
+  background: grey;
+  border-radius: 5px;
+  margin: 5px;
+  color: white;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-shadow: 2px 2px 4px #000000;
+  align-items: center;
+}
+
+input, label {
+    float:left;
+}
+
+label {
+    clear:left;
+    text-align:right;
+    padding-right:10px;
 }
