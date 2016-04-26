@@ -11,7 +11,7 @@ class Group extends Model
 
   //Relationships
   public function owner() {
-      return $this->belongsTo('App\User', 'user_id', 'group_id');
+      return $this->belongsTo('App\User');
   }
 
   public function members() {
