@@ -123,9 +123,32 @@
                       <div class="panel-body">Login to view shared routes</div>
                     @else
                       <!-- Routes You Shared -->
-                      <div class="row"><h4>Routes You Shared</h4></div>
+                      <div class="row"><h4>Friends' Routes</h4></div>
                       <!-- Data From Controller Goes Here -->
                       <!-- foreach($data['routes'] as $route) -->
+                        @foreach($friends as $friend)
+                          <div class="panel-group">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#collapse1">
+                                    <?php echo $friend->name; ?>
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapse1" class="panel-collapse collapse">
+                                <ul class="list-group">
+                                  @foreach($friend->ownedRoutes as $route)
+                                    <li class="list-group-item">
+                                      <?php echo $route->name; ?>
+                                    </li>
+                                  @endforeach
+                                </ul>
+                              </div>
+                            </div>
+                          </div
+                        @endforeach
+
                       <div class="sidebar-row row" onclick=sidebarClick(this)>
                         <div class="col-sm-6">
                           Colorado to Timbucktoo<!-- <?php //echo $route['name']; ?>-->
@@ -142,7 +165,7 @@
                       <!-- endforeach -->
 
                       <!-- Routes Shared With You -->
-                      <div class="row"><h4>Routes Shared With You</h4></div>
+                      <div class="row"><h4>Your Groups' Routes</h4></div>
                     @endif
                   </div>
                 </div>
@@ -284,9 +307,7 @@
                           </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">
-                          <i class="fa fa-btn fa-user"></i>Create
-                        </button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                       </div>
                     </div>
                   </form>
