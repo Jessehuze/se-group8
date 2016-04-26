@@ -79,6 +79,7 @@ a:link {
 .sidebar-row:hover {
   background-color: yellowgreen;
   color: white;
+  cursor: pointer;
 }
 
 .sidebar-panel {
@@ -113,17 +114,22 @@ a:link {
 
 #save-route {
     padding: 5px;
-    margin-left: 25%;
+    margin-left: 20%;
     margin-bottom: 5%;
     color: white;
     background: green;
     display: inline-block;
-    width: 50%;
+    width: 60%;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-shadow: 2px 2px 4px #000000;
     font-weight: bold;
+    cursor: pointer;
+}
+
+#save-route:hover {
+  background: yellowgreen;
 }
 
 #create-route-interface {
