@@ -136,12 +136,11 @@
                                 </a>
                               </h4>
                             </div>
-                            <?php //dd($friend->ownedRoutes->rname) ?>
-                            <div id="#collapsefriend{{$friend->id}}" class="panel-collapse collapse">
+                            <div id="collapsefriend{{$friend->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($friend->ownedRoutes as $route)
+                                  <?php //dd($friend->ownedRoutes) ?>
                                   <li class="list-group-item">
-                                    <?php //dd($route); ?>
                                     <?php echo $route->rname; ?>
                                   </li>
                                 @endforeach
