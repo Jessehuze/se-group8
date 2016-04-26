@@ -121,28 +121,30 @@
                       <div class="row"><h4>Friends' Routes</h4></div>
                       <!-- Data From Controller Goes Here -->
                       <!-- foreach($data['routes'] as $route) -->
-                        @foreach($friends as $friend)
-                          <div class="panel-group">
-                            <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <a data-toggle="collapse" href="#collapse1">
-                                    <?php echo $friend->name; ?>
-                                  </a>
-                                </h4>
-                              </div>
-                              <div id="collapse1" class="panel-collapse collapse">
-                                <ul class="list-group">
-                                  @foreach($friend->ownedRoutes as $route)
-                                    <li class="list-group-item">
-                                      <?php echo $route->name; ?>
-                                    </li>
-                                  @endforeach
-                                </ul>
-                              </div>
+                      @foreach($friends as $friend)
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapsefriend{{$friend->id}}">
+                                  <?php echo $friend->name; ?>
+                                </a>
+                              </h4>
                             </div>
-                          </div
-                        @endforeach
+                            <?php //dd($friend->ownedRoutes->rname) ?>
+                            <div id="#collapsefriend{{$friend->id}}" class="panel-collapse collapse">
+                              <ul class="list-group">
+                                @foreach($friend->ownedRoutes as $route)
+                                  <li class="list-group-item">
+                                    <?php //dd($route); ?>
+                                    <?php echo $route->rname; ?>
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      @endforeach
 
                       <div class="sidebar-row row" onclick=sidebarClick(this)>
                         <div class="col-sm-6">
