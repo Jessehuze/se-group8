@@ -163,7 +163,7 @@
                                 </a>
                               </h4>
                             </div>
-                            <div id="collapsefriend{{$ownedGroup->id}}" class="panel-collapse collapse">
+                            <div id="collapsegroup{{$ownedGroup->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($ownedGroup->owner->ownedRoutes as $route)
                                   <?php //dd($friend->ownedRoutes) ?>
