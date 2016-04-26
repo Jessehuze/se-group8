@@ -42,6 +42,10 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('createGroup', 'PagesController@createGroup');
 
+    Route::post('joinGroup', 'PagesController@joinGroup');
+
+    Route::post('leaveGroup', 'PagesController@leaveGroup');
+
     Route::post('addFriend', 'PagesController@addFriend');
 
     Route::post('removeFriend', 'PagesController@removeFriend');

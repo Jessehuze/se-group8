@@ -246,7 +246,29 @@
                     <div class="panel-body">
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
-                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> <i>owned by</i> <?php //dd($group->owner()); ?></div>
+                        <div class="row">
+                          <div class="col-sm-10"> 
+                             &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp; 
+                             <?php echo ($group->owner->id == $user->id ? 'you!' : $group->owner->name); ?>
+                          </div>
+                          <div class="col-sm-2">
+                            <!-- Join Group Button Only Shows Up If Not In Group -->
+                            @if(!in_array($group->id, $groupIds))
+                              <form class="form-horizontal" role="form" method="POST" action="joinGroup">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="group_id" value="{{$group->id}}">
+                                <button type="submit" class="btn btn-success btn-xs">Join</button>
+                              </form>
+                            <!-- Leave Group Button Only Shows Up If Not Group Owner -->
+                            @elseif($group->owner->id != $user->id)
+                              <form class="form-horizontal" role="form" method="POST" action="leaveGroup">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="group_id" value="{{$group->id}}">
+                                <button type="submit" class="btn btn-danger btn-xs">Leave</button>
+                              </form>
+                            @endif
+                          </div>
+                        </div>
                       @endforeach
                     </div>
                   @endif

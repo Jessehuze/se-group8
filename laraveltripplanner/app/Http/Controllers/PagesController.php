@@ -28,21 +28,24 @@ class PagesController extends Controller
         $groups = Group::all();
         $users = User::all();
         $friends = $user->friends()->get();
+        $userGroups = $user->groups()->get();
         $ownedGroups = $user->ownedGroups()->get();
         $ownedRoutes = $user->ownedRoutes()->get();
-        $friendIds = array();
+
+        $friendIds = array(); 
         foreach($friends as $friend) {
           array_push($friendIds, $friend->id);
         }
+
+        $groupIds = array();
+        foreach($userGroups as $group) {
+          array_push($groupIds, $group->id);
+        }
       }
       else {
-        $routes = null;
-        $groups = null;
-        $users = null;
-        $friends = null;
-        $ownedGroups = null;
-        $ownedRoutes = null;
-        $friendIds = null;
+        $routes = $groups = $users = $friends = null;
+        $ownedGroups = $ownedRoutes = $friendIds = null;
+        $groupIds = null;
       }
 
       // This will route and pass data to the dashboard view
@@ -51,7 +54,8 @@ class PagesController extends Controller
                                       'routes' => $routes, 
                                       'groups' => $groups,
                                       'friends' => $friends,
-                                      'friendIds' => $friendIds,
+                                      'friendIds' => $friendIds, //The IDs of Logged in user's friends
+                                      'groupIds' => $groupIds, //The IDs of Logged in user's groups
                                       'ownedGroups' => $ownedGroups,
                                       'ownedRoutes' => $ownedRoutes]);
     }
@@ -64,7 +68,25 @@ class PagesController extends Controller
       $group->gname = $request->input('gname');
       $group->user_id = $user->id;
       $group->save();
-      $group->members()->attach(array($user->id));
+      $group->members()->attach(array($user->id)); //Adds user as member of group
+
+      return Redirect::action('PagesController@dashboard');
+    }
+
+    public function joinGroup(Request $request)
+    {
+      $user = Auth::user();
+      $groupId = $request->input('group_id');
+      $user->groups()->attach($groupId);
+
+      return Redirect::action('PagesController@dashboard');
+    }
+
+    public function leaveGroup(Request $request)
+    {
+      $user = Auth::user();
+      $groupId = $request->input('group_id');
+      $user->groups()->detach($groupId);
 
       return Redirect::action('PagesController@dashboard');
     }
