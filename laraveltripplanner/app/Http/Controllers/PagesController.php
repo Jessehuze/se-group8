@@ -50,10 +50,20 @@ class PagesController extends Controller
     public function createGroup(Request $request)
     {
       $user = Auth::user();
+
       $group = new Group;
       $group->gname = $request->input('gname');
       $group->user_id = $user->id;
       $group->save();
+      $group->members()->sync(array($user->id));
+
+      return Redirect::action('PagesController@dashboard');
+    }
+
+    public function addFriend(Request $request)
+    {
+      $user = Auth::user();
+      
 
       return Redirect::action('PagesController@dashboard');
     }
