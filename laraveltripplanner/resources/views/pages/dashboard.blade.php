@@ -64,9 +64,9 @@
                   <div class="panel-body" id="warnings-panel">
                   </div>
                   <div id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">
-                    Save Route
+                  Save Route
                   </div>
-              </div>
+                </div>
               </div>
             </div>
             <!-- End New Route Accordion -->
