@@ -30,6 +30,10 @@ class PagesController extends Controller
         $friends = $user->friends()->get();
         $ownedGroups = $user->ownedGroups()->get();
         $ownedRoutes = $user->ownedRoutes()->get();
+        $friendIds = array();
+        foreach($friends as $friend) {
+          array_push($friendIds, $friend->id);
+        }
       }
       else {
         $routes = null;
@@ -45,6 +49,7 @@ class PagesController extends Controller
                                       'routes' => $routes, 
                                       'groups' => $groups,
                                       'friends' => $friends,
+                                      'friendIds' => $friendIds,
                                       'ownedGroups' => $ownedGroups,
                                       'ownedRoutes' => $ownedRoutes]);
     }
@@ -57,7 +62,7 @@ class PagesController extends Controller
       $group->gname = $request->input('gname');
       $group->user_id = $user->id;
       $group->save();
-      $group->members()->sync(array($user->id));
+      $group->members()->attach(array($user->id));
 
       return Redirect::action('PagesController@dashboard');
     }
@@ -65,7 +70,16 @@ class PagesController extends Controller
     public function addFriend(Request $request)
     {
       $user = Auth::user();
-      $user->friends()->sync(array($request->input('user_id')));
+      $user->friends()->attach(array($request->input('user_id')));
+
+      return Redirect::action('PagesController@dashboard');
+    }
+
+    public function removeFriend(Request $request)
+    {
+      //$user = Auth::user();
+      $user = User::find($request->input('user_id'));
+      $user->friends()->detach(array());
 
       return Redirect::action('PagesController@dashboard');
     }

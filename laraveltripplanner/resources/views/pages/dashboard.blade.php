@@ -183,17 +183,22 @@
                     @else
                       <div class="panel-body">
                         <div class="row"><h4>All Users</h4></div>
-                        @foreach($users as $user)
-                          <div class="row">
-                            <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $user->name; ?></div>
-                            <div class="col-sm-3"> 
-                              <form class="form-horizontal" role="form" method="POST" action="addFriend">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="user_id" value="{{$user->id}}">
-                                <button type="submit" class="btn btn-success">Add</button>
-                              </form>
+                        @foreach($users as $otheruser)
+                          @if($otheruser->id != $user->id) <!-- Logged in user will not show up on list of all users -->
+                            <div class="row">
+                              <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $otheruser->name; ?></div>
+                              <div class="col-sm-3">
+                                <!-- Add Friend Button Only Shows Up If Not Friends -->
+                                @if(!in_array($otheruser->id, $friendIds))
+                                  <form class="form-horizontal" role="form" method="POST" action="addFriend">
+                                    {!! csrf_field() !!}
+                                    <input type="hidden" name="user_id" value="{{$otheruser->id}}">
+                                    <button type="submit" class="btn btn-success">Add</button>
+                                  </form>
+                                @endif
+                              </div>
                             </div>
-                          </div>
+                          @endif
                         @endforeach
                       </div>
                     @endif
@@ -209,9 +214,11 @@
                           <div class="row">
                             <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $friend->name; ?></div>
                             <div class="col-sm-3"> 
-                              <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-btn fa-user"></i>Remove
-                              </button>
+                              <form class="form-horizontal" role="form" method="POST" action="removeFriend">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                              </form>
                             </div>
                           </div>
                         @endforeach
@@ -239,7 +246,7 @@
                     <div class="panel-body">
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
-                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> <i>owned by</i> <?php dd($group->owner()); ?></div>
+                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> <i>owned by</i> <?php //dd($group->owner()); ?></div>
                       @endforeach
                     </div>
                   @endif
