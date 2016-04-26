@@ -50,23 +50,41 @@
                 </div>
               </a>
               <div id="collapse1" class="panel-collapse collapse">
-                <div id="create-route-interface">
-                  <div class="panel-body" id="route-name">
-                    <label for="route-name">Route Name:</label>
-                    <input id="route-name" type="text">
-                  </div>
-                  <div class="panel-body" id="routes">
-                  </div>
-                  <div class="panel-body" id="searchPanel">
-                    <label for="map-input">Add Waypoint:</label>
-                    <input id="map-input" class="controls" type="text" placeholder="Search Box">
-                  </div>
-                  <div class="panel-body" id="warnings-panel">
-                  </div>
-                  <div id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">
-                  Save Route
-                  </div>
+
+                <!-- Map Stuff -->
+                <div class="panel-body" id="searchPanel">
+                  <label for="map-input">Add Waypoint:</label>
+                  <input id="map-input" class="controls" type="text" placeholder="Search Box">
                 </div>
+                <div class="panel-body" id="warnings-panel"></div>
+                <div class="panel-body" id="routes"></div>
+
+                @if (Auth::guest())
+                      <div class="panel-body">Login to save route</div>
+                @else
+                  <!-- Create Route Form-->
+                  <form class="form-horizontal" role="form" method="POST" action="createRoute">
+                    {!! csrf_field() !!}
+                    <div class="row">
+                      <div class="panel-body">
+                        <!-- Route Name Input-->
+                        <div class="form-group{{ $errors->has('rname') ? ' has-error' : '' }}">
+                          <label class="control-label col-sm-4">Route Name</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" name="rname">
+                            @if ($errors->has('rname'))
+                              <span class="help-block">
+                                <strong>{{ $errors->first('rname') }}</strong>
+                              </span>
+                            @endif
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- End Create Route Form-->
+                @endif
               </div>
             </div>
             <!-- End New Route Accordion -->
@@ -165,7 +183,7 @@
                       @endforeach
 
 
-                      <!-- Routes Shared With You -->
+                      <!-- Your Groups' Routes -->
                       <div class="row"><h4>Your Groups' Routes</h4></div>
                       @foreach($ownedGroups as $ownedGroup)
                         <div class="panel-group">

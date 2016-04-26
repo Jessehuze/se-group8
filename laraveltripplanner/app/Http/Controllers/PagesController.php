@@ -60,6 +60,18 @@ class PagesController extends Controller
                                       'ownedRoutes' => $ownedRoutes]);
     }
 
+    public function createRoute(Request $request)
+    {
+      $user = Auth::user();
+
+      $route = new Route;
+      $route->rname = $request->input('rname');
+      $route->user_id = $user->id;
+      $route->save();
+
+      return Redirect::action('PagesController@dashboard');
+    }
+
     public function createGroup(Request $request)
     {
       $user = Auth::user();
