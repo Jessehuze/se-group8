@@ -193,7 +193,7 @@
                                   <form class="form-horizontal" role="form" method="POST" action="addFriend">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="user_id" value="{{$otheruser->id}}">
-                                    <button type="submit" class="btn btn-success">Add</button>
+                                    <button type="submit" class="btn btn-success btn-xs">Add</button>
                                   </form>
                                 @endif
                               </div>
@@ -216,8 +216,8 @@
                             <div class="col-sm-3"> 
                               <form class="form-horizontal" role="form" method="POST" action="removeFriend">
                                 {!! csrf_field() !!}
-                                <input type="hidden" name="user_id" value="{{$user->id}}">
-                                <button type="submit" class="btn btn-danger">Remove</button>
+                                <input type="hidden" name="user_id" value="{{$friend->id}}">
+                                <button type="submit" class="btn btn-danger btn-xs">Remove</button>
                               </form>
                             </div>
                           </div>

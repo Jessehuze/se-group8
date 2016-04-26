@@ -77,9 +77,10 @@ class PagesController extends Controller
 
     public function removeFriend(Request $request)
     {
-      //$user = Auth::user();
-      $user = User::find($request->input('user_id'));
-      $user->friends()->detach(array());
+      $user = Auth::user();
+      $friendId = $request->input('user_id');
+      //dd($request->input('user_id'));
+      $user->friends()->detach($friendId);
 
       return Redirect::action('PagesController@dashboard');
     }
