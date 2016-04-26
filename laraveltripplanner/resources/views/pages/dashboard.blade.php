@@ -49,18 +49,23 @@
                 </div>
               </a>
               <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body" id="route-name">
-                  <label for="route-name">Route Name</label>
-                  <input id="route-name" type="text">
-                </div>
-                <div class="panel-body" id="routes">
-                </div>
-                <div class="panel-body" id="searchPanel">
-                  <input id="map-input" class="controls" type="text" placeholder="Search Box">
-                </div>
-                <div class="panel-body" id="warnings-panel">
-                </div>
-                <button type="button" id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">Save Route</button>
+                <div id="create-route-interface">
+                  <div class="panel-body" id="route-name">
+                    <label for="route-name">Route Name:</label>
+                    <input id="route-name" type="text">
+                  </div>
+                  <div class="panel-body" id="routes">
+                  </div>
+                  <div class="panel-body" id="searchPanel">
+                    <label for="map-input">Add Waypoint:</label>
+                    <input id="map-input" class="controls" type="text" placeholder="Search Box">
+                  </div>
+                  <div class="panel-body" id="warnings-panel">
+                  </div>
+                  <div id="save-route" onclick="loadMap(['Rolla, Missouri, United States', 'Texas, United States']);">
+                    Save Route
+                  </div>
+              </div>
               </div>
             </div>
             <!-- My Routes Accordion -->
@@ -213,7 +218,7 @@
                         @foreach($friends as $friend)
                           <div class="row">
                             <div class="col-sm-9"> &nbsp;&nbsp;&nbsp;<?php echo $friend->name; ?></div>
-                            <div class="col-sm-3"> 
+                            <div class="col-sm-3">
                               <form class="form-horizontal" role="form" method="POST" action="removeFriend">
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="user_id" value="{{$friend->id}}">
@@ -247,8 +252,8 @@
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
                         <div class="row">
-                          <div class="col-sm-10"> 
-                             &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp; 
+                          <div class="col-sm-10">
+                             &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp;
                              <?php echo ($group->owner->id == $user->id ? 'you!' : $group->owner->name); ?>
                           </div>
                           <div class="col-sm-2">
