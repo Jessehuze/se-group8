@@ -175,26 +175,28 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
     for (var i = 0; i < markerArray.length; i++) {
         markerArray[i].setMap(null);
     }
-    // Retrieve the start and end locations and create a DirectionsRequest
-    directionsService.route({
-        origin: markers[0].position,
-        destination: markers[markers.length -1].position,
-        waypoints: waypts,
-        optimizeWaypoints: false,
-        travelMode: google.maps.TravelMode.DRIVING
-    }, function(response, status) {
-        // Route the directions and pass the response to a function to create
-        // markers for each step.
-        if (status === google.maps.DirectionsStatus.OK) {
-            document.getElementById('warnings-panel').innerHTML =
-                '<b>' + response.routes[0].warnings + '</b>';
-            directionsDisplay.setDirections(response);
-            showSteps(response, markerArray, stepDisplay, map);
-        } else {
-            window.alert('Directions request failed due to ' +
-                status);
-        }
-    });
+    if (markers.length > 1) {
+        // Retrieve the start and end locations and create a DirectionsRequest
+        directionsService.route({
+            origin: markers[0].position,
+            destination: markers[markers.length -1].position,
+            waypoints: waypts,
+            optimizeWaypoints: false,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+            // Route the directions and pass the response to a function to create
+            // markers for each step.
+            if (status === google.maps.DirectionsStatus.OK) {
+                document.getElementById('warnings-panel').innerHTML =
+                    '<b>' + response.routes[0].warnings + '</b>';
+                directionsDisplay.setDirections(response);
+                showSteps(response, markerArray, stepDisplay, map);
+            } else {
+                window.alert('Directions request failed due to ' +
+                    status);
+            }
+        });
+    }
 }
 
 function showSteps(directionResult, markerArray, stepDisplay, map) {
