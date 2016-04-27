@@ -11,18 +11,18 @@ class Route extends Model
 
     //Relationships
     public function owner() {
-        return $this->belongsTo('App/User');
+        return $this->belongsTo('App\User');
     }
 
     public function users() {
-        return $this->belongsToMany('App/User', 'route_access', 'routeid', 'userid');
+        return $this->belongsToMany('App\User', 'route_access', 'route_id', 'user_id');
     }
 
     public function groups() {
-        return $this->belongsToMany('App/Group', 'group_route_access', 'routeid', 'groupid');
+        return $this->belongsToMany('App\Group', 'group_route_access', 'route_id', 'group_id');
     }
 
     public function waypoints() {
-        return $this->hasMany('App/Waypoint');
+        return $this->hasMany('App\Waypoint');
     }
 }

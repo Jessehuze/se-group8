@@ -11,6 +11,6 @@ class Waypoint extends Model
 
     //Relationships
     public function route() {
-        return $this->belongsTo('App/Route');
+        return $this->belongsTo('App\Route');
     }
 }

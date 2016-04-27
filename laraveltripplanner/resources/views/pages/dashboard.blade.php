@@ -108,18 +108,19 @@
                     <!-- Data From Controller Goes Here -->
                     @foreach($user->ownedRoutes as $route)
                       <?php $routeWaypoints = $route->waypoints; ?>
-                      <?php dd($routeWaypoints); ?>
-                      <div class="sidebar-row row" onclick=sidebarClick(this, {{$routeWaypoints}})>
+                      <?php $waypointsAddrs = array(); ?>
+                      @foreach($routeWaypoints as $routeWaypoint)
+                        <?php $waypointsAddrs[$routeWaypoint->index] = $routeWaypoint->addr; ?>
+                      @endforeach
+                      <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']"; ?>
+                      <?php //dd($waypointsAddrsString)?>
+                      <div class="sidebar-row row" onclick=sidebarClick(this, {{$waypointsAddrsString}})>
                         <div class="col-sm-6">
                           <?php echo $route->rname ?>
                         </div>
                         <div class="col-sm-6">
-                          <div class="row">
-                            5 Hr 30 Min
-                          </div>
-                          <div class="row">
-                            9000 Miles
-                          </div>
+                          <div class="row"></div>
+                          <div class="row"></div>
                         </div>
                       </div>
                     @endforeach
