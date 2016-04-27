@@ -112,9 +112,9 @@
                       @foreach($routeWaypoints as $routeWaypoint)
                         <?php $waypointsAddrs[$routeWaypoint->index] = $routeWaypoint->addr; ?>
                       @endforeach
-                      <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']"; ?>
+                      <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']\""; ?>
                       <?php //dd($waypointsAddrsString)?>
-                      <div class="sidebar-row row" onclick=sidebarClick(this, <?php echo $waypointsAddrsString ?>)>
+                      <div class="sidebar-row row" onclick=sidebarClick(this, <?php echo $waypointsAddrsString; ?>)>
                         <div class="col-sm-6">
                           <?php echo $route->rname ?>
                         </div>
