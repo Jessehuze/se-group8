@@ -77,6 +77,7 @@
                                 <strong>{{ $errors->first('rname') }}</strong>
                               </span>
                             @endif
+                            <input type="hidden" id="waypoints" name="waypoints" value="">
                           </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -149,13 +150,15 @@
                       @foreach($friends as $friend)
                         <div class="panel-group">
                           <div class="panel panel-default">
-                            <a data-toggle="collapse" href="#collapsefriend{{$friend->id}}">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <?php echo $friend->name; ?>
-                                </h4>
-                              </div>
-                            </a>
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapsefriend{{$friend->id}}">
+                                  <div class="row" style="padding-right: 10; padding-left: 10; ">
+                                    <?php echo $friend->name; ?>
+                                  </div>
+                                </a>
+                              </h4>
+                            </div>
                             <div id="collapsefriend{{$friend->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($friend->ownedRoutes as $route)
@@ -188,13 +191,15 @@
                       @foreach($ownedGroups as $ownedGroup)
                         <div class="panel-group">
                           <div class="panel panel-default">
-                            <a data-toggle="collapse" href="#collapsegroup{{$ownedGroup->id}}">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">
-                                  <?php echo $ownedGroup->gname; ?>
-                                </h4>
-                              </div>
-                            </a>
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapsegroup{{$ownedGroup->id}}">
+                                  <div class="row" style="padding-right: 10; padding-left: 10; ">
+                                    <?php echo $ownedGroup->gname; ?>
+                                  </div>
+                                </a>
+                              </h4>
+                            </div>
                             <div id="collapsegroup{{$ownedGroup->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($ownedGroup->owner->ownedRoutes as $route)
@@ -304,27 +309,46 @@
                     <div class="panel-body">
                       <div class="row"><h4>All Groups</h4></div>
                       @foreach($groups as $group)
-                        <div class="row">
-                          <div class="col-sm-10">
-                             &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp;
-                             <?php echo ($group->owner->id == $user->id ? 'you!' : $group->owner->name); ?>
-                          </div>
-                          <div class="col-sm-2">
-                            <!-- Join Group Button Only Shows Up If Not In Group -->
-                            @if(!in_array($group->id, $groupIds))
-                              <form class="form-horizontal" role="form" method="POST" action="joinGroup">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="group_id" value="{{$group->id}}">
-                                <button type="submit" class="btn btn-success btn-xs">Join</button>
-                              </form>
-                            <!-- Leave Group Button Only Shows Up If Not Group Owner -->
-                            @elseif($group->owner->id != $user->id)
-                              <form class="form-horizontal" role="form" method="POST" action="leaveGroup">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="group_id" value="{{$group->id}}">
-                                <button type="submit" class="btn btn-danger btn-xs">Leave</button>
-                              </form>
-                            @endif
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h5 class="panel-title">
+                                <div class="row" style="padding-right: 10; padding-left: 10; ">
+                                  <a data-toggle="collapse" href="#collapsegroupmembers{{$group->id}}">
+                                    <div class="col-sm-10" style="padding: 0">
+                                       &nbsp;&nbsp;&nbsp;<?php echo $group->gname; ?> &nbsp;<i> owned by </i>&nbsp;
+                                       <?php echo ($group->owner->id == $user->id ? 'you!' : $group->owner->name); ?>
+                                    </div>
+                                  </a>
+                                  <div class="col-sm-2">
+                                    <!-- Join Group Button Only Shows Up If Not In Group -->
+                                    @if(!in_array($group->id, $groupIds))
+                                      <form class="form-horizontal" role="form" method="POST" action="joinGroup">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="group_id" value="{{$group->id}}">
+                                        <button type="submit" class="btn btn-success btn-xs">Join</button>
+                                      </form>
+                                    <!-- Leave Group Button Only Shows Up If Not Group Owner -->
+                                    @elseif($group->owner->id != $user->id)
+                                      <form class="form-horizontal" role="form" method="POST" action="leaveGroup">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="group_id" value="{{$group->id}}">
+                                        <button type="submit" class="btn btn-danger btn-xs">Leave</button>
+                                      </form>
+                                    @endif
+                                  </div>
+                                </div>
+                              </h5>
+                            </div>
+                            <div id="collapsegroupmembers{{$group->id}}" class="panel-collapse collapse">
+                              <ul class="list-group">
+                                @foreach($group->members as $member)
+                                  <li class="list-group-item">
+                                    &nbsp;&nbsp;&nbsp;<?php echo $member->name ?>
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       @endforeach
@@ -336,7 +360,28 @@
                     <div class="panel-body">
                       <div class="row"><h4>Owned Groups</h4></div>
                       @foreach($ownedGroups as $ownedGroup)
-                        <div class="row"> &nbsp;&nbsp;&nbsp;<?php echo $ownedGroup->gname; ?></div>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapseownedgroupmembers{{$ownedGroup->id}}">
+                                  <div class="row" style="padding-right: 10; padding-left: 10; ">
+                                    <?php echo $ownedGroup->gname; ?>
+                                  </div>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseownedgroupmembers{{$ownedGroup->id}}" class="panel-collapse collapse">
+                              <ul class="list-group">
+                                @foreach($ownedGroup->members as $member)
+                                  <li class="list-group-item">
+                                    &nbsp;&nbsp;&nbsp;<?php echo $member->name ?>
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                       @endforeach
                     </div>
                   </div>
