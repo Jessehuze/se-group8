@@ -107,7 +107,9 @@
                   @else
                     <!-- Data From Controller Goes Here -->
                     @foreach($user->ownedRoutes as $route)
-                      <div class="sidebar-row row" onclick=sidebarClick(this)>
+                      <?php $routeWaypoints = $route->waypoints; ?>
+                      <?php dd($routeWaypoints); ?>
+                      <div class="sidebar-row row" onclick=sidebarClick(this, {{$routeWaypoints}})>
                         <div class="col-sm-6">
                           <?php echo $route->rname ?>
                         </div>

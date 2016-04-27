@@ -14,6 +14,8 @@ use App\Route;
 
 use App\Group;
 
+use App\Waypoint;
+
 use Illuminate\Support\Facades\Redirect;
 
 class PagesController extends Controller
@@ -64,10 +66,22 @@ class PagesController extends Controller
     {
       $user = Auth::user();
 
+      //Save Route
       $route = new Route;
       $route->rname = $request->input('rname');
+      $waypoints = explode(";", $request->input('waypoints'));
+      array_pop($waypoints);
       $route->user_id = $user->id;
       $route->save();
+
+      //Save Waypoints
+      foreach ($waypoints as $key => $waypoint) {
+        $newWaypoint = new Waypoint;
+        $newWaypoint->route_id = $route->id;
+        $newWaypoint->index = $key;
+        $newWaypoint->addr = $waypoint;
+        $newWaypoint->save();
+      }
 
       return Redirect::action('PagesController@dashboard');
     }
