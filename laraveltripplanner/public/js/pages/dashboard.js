@@ -94,6 +94,10 @@ function initSearch() {
                 placeArray.push(places[0]);
                 var index = placeArray.length-1;
 
+                // Add the place to the waypoint input
+                waypointList = getElementById("waypoints");
+                waypointList.value += (places[0].formatted_address + ";");
+
                 // Clear out the old markers.
                 for (var i = 0, marker; marker = markers[i]; i++) {
                     marker.setMap(null);
@@ -338,3 +342,4 @@ function drawMap() {
         directionsDisplay, directionsService, markers, stepDisplay, map);
     map.fitBounds(bounds);
 }
+
