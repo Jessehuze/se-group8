@@ -10,7 +10,7 @@
     @include('includes.bootstrap')
 
     <!-- Style Sheet For This Page -->
-    <link href="./css/pages/signup.css" rel="stylesheet" type="text/css"> 
+    <link href="./css/pages/signup.css" rel="stylesheet" type="text/css">
 
   </head>
   <body>
@@ -28,12 +28,12 @@
     <!-- Sign Up Form -->
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
       {!! csrf_field() !!}
-      
+
       <!-- Name Input-->
       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <label class="col-sm-offset-2 control-label col-sm-2">Name</label>
+        <label class="col-sm-offset-2 control-label col-sm-2"></label>
           <div class="col-md-4">
-            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+            <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
             @if ($errors->has('name'))
               <span class="help-block">
                 <strong>{{ $errors->first('name') }}</strong>
@@ -45,9 +45,9 @@
 
       <!-- Email Input-->
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-        <label class="col-sm-offset-2 control-label col-sm-2">E-Mail Address</label>
+        <label class="col-sm-offset-2 control-label col-sm-2"></label>
         <div class="col-md-4">
-          <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+          <input type="email" class="form-control" name="email" placeholder="E-Mail Address" value="{{ old('email') }}">
           @if ($errors->has('email'))
             <span class="help-block">
               <strong>{{ $errors->first('email') }}</strong>
@@ -59,9 +59,9 @@
 
       <!-- Password Input-->
       <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-        <label class="col-sm-offset-2 control-label col-sm-2">Password</label>
+        <label class="col-sm-offset-2 control-label col-sm-2"></label>
         <div class="col-md-4">
-          <input type="password" class="form-control" name="password">
+          <input type="password" class="form-control" name="password" placeholder="Password">
           @if ($errors->has('password'))
             <span class="help-block">
               <strong>{{ $errors->first('password') }}</strong>
@@ -73,9 +73,9 @@
 
       <!-- Confirm Password Input-->
       <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-        <label class="col-sm-offset-2 control-label col-sm-2">Confirm Password</label>
+        <label class="col-sm-offset-2 control-label col-sm-2"></label>
         <div class="col-md-4">
-          <input type="password" class="form-control" name="password_confirmation">
+          <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
           @if ($errors->has('password_confirmation'))
             <span class="help-block">
               <strong>{{ $errors->first('password_confirmation') }}</strong>
