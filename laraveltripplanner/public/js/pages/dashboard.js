@@ -243,12 +243,13 @@ function removeWaypoint(id, placeName) {
 
 var active = undefined;
 
-function sidebarClick(divObj) {
+function sidebarClick(divObj, locations) {
   if(active != undefined) {
     active.id="";
   }
   active = divObj;
   active.id="active-route";
+  loadMap(locations);
 }
 
 function loadMap(locations) {
