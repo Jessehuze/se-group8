@@ -114,12 +114,12 @@
                       @endforeach
                       <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']"; ?>
                       <?php //dd($waypointsAddrsString)?>
-                      <div class="sidebar-row row" onclick=sidebarClick(this, {{$waypointsAddrsString}})>
+                      <div class="sidebar-row row" onclick=sidebarClick(this, <?php echo $waypointsAddrsString ?>)>
                         <div class="col-sm-6">
                           <?php echo $route->rname ?>
                         </div>
                         <div class="col-sm-6">
-                          <div class="row"></div>
+                          <div class="row"></div> 
                           <div class="row"></div>
                         </div>
                       </div>
