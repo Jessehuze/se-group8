@@ -95,7 +95,7 @@ function initSearch() {
                 var index = placeArray.length-1;
 
                 // Add the place to the waypoint input
-                waypointList = getElementById("waypoints");
+                waypointList = document.getElementById("waypoints");
                 waypointList.value += (places[0].formatted_address + ";");
 
                 // Clear out the old markers.
