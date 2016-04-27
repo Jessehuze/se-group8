@@ -56,7 +56,7 @@
                   <label for="map-input">Add Waypoint:</label>
                   <input id="map-input" class="controls" type="text" placeholder="Search Box">
                 </div>
-                <div class="panel-body" id="warnings-panel"></div>
+                <div id="warnings-panel"></div>
                 <div class="panel-body" id="routes"></div>
 
                 @if (Auth::guest())
@@ -69,9 +69,9 @@
                       <div class="panel-body">
                         <!-- Route Name Input-->
                         <div class="form-group{{ $errors->has('rname') ? ' has-error' : '' }}">
-                          <label class="control-label col-sm-4">Route Name</label>
+                          <label class="control-label col-sm-4">Route Name:</label>
                           <div class="col-md-8">
-                            <input type="text" class="form-control" name="rname">
+                            <input type="text" class="form-control" name="rname" id="route-name">
                             @if ($errors->has('rname'))
                               <span class="help-block">
                                 <strong>{{ $errors->first('rname') }}</strong>

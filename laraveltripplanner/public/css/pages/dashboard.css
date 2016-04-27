@@ -42,12 +42,12 @@ a:link {
 .location {
     background-color: yellowgreen;
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom:5px;
+    margin-bottom:10px;
     padding: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
     text-shadow: 2px 2px 4px #000000;
+    color: white;
 }
 
 .deleteLocation {
@@ -56,11 +56,13 @@ a:link {
 }
 
 #routes {
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 #route-name {
   width: 100%;
+  color: black;
+  font-weight: 400;
 }
 
 /* default style of sidebar route buttons */
@@ -106,6 +108,8 @@ a:link {
 #map-input {
     font-size: 14px;
     width: 100%;
+    font-weight: 400;
+    color: black;
 }
 
 #accordion {
