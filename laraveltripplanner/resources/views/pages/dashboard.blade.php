@@ -77,6 +77,7 @@
                                 <strong>{{ $errors->first('rname') }}</strong>
                               </span>
                             @endif
+                            <input type="hidden" id="waypoints" name="waypoints" value="">
                           </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
