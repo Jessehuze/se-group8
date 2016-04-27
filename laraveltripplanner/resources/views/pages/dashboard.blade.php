@@ -105,15 +105,14 @@
                   @if (Auth::guest())
                     <div class="panel-body">Login to view your routes</div>
                   @else
-                    <!-- Data From Controller Goes Here -->
                     @foreach($user->ownedRoutes as $route)
+                      <!-- Waypoint Prep Code -->
                       <?php $routeWaypoints = $route->waypoints; ?>
                       <?php $waypointsAddrs = array(); ?>
                       @foreach($routeWaypoints as $routeWaypoint)
                         <?php $waypointsAddrs[$routeWaypoint->index] = $routeWaypoint->addr; ?>
                       @endforeach
                       <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']"; ?>
-                      <?php //dd($waypointsAddrsString)?>
                       <div class="sidebar-row row" onclick="sidebarClick(this,<?php echo $waypointsAddrsString; ?>)">
                         <div class="col-sm-6">
                           <?php echo $route->rname ?>
@@ -148,8 +147,6 @@
                     @else
                       <!-- Routes You Shared -->
                       <div class="row"><h4>Friends' Routes</h4></div>
-                      <!-- Data From Controller Goes Here -->
-                      <!-- foreach($data['routes'] as $route) -->
                       @foreach($friends as $friend)
                         <div class="panel-group">
                           <div class="panel panel-default">
@@ -165,19 +162,22 @@
                             <div id="collapsefriend{{$friend->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($friend->ownedRoutes as $route)
-                                  <?php //dd($friend->ownedRoutes) ?>
                                   <li class="list-group-item">
-                                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                                    <!-- Waypoint Prep Code -->
+                                    <?php $routeWaypoints = $route->waypoints; ?>
+                                    <?php $waypointsAddrs = array(); ?>
+                                    @foreach($routeWaypoints as $routeWaypoint)
+                                      <?php $waypointsAddrs[$routeWaypoint->index] = $routeWaypoint->addr; ?>
+                                    @endforeach
+                                    <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']"; ?>
+
+                                    <div class="sidebar-row row" onclick="sidebarClick(this,<?php echo $waypointsAddrsString; ?>)">
                                       <div class="col-sm-6">
                                         <?php echo $route->rname ?>
                                       </div>
                                       <div class="col-sm-6">
-                                        <div class="row">
-                                          5 Hr 30 Min
-                                        </div>
-                                        <div class="row">
-                                          9000 Miles
-                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row"></div>
                                       </div>
                                     </div>
                                   </li>
@@ -206,19 +206,22 @@
                             <div id="collapsegroup{{$ownedGroup->id}}" class="panel-collapse collapse">
                               <ul class="list-group">
                                 @foreach($ownedGroup->owner->ownedRoutes as $route)
-                                  <?php //dd($friend->ownedRoutes) ?>
                                   <li class="list-group-item">
-                                    <div class="sidebar-row row" onclick=sidebarClick(this)>
+                                    <!-- Waypoint Prep Code -->
+                                    <?php $routeWaypoints = $route->waypoints; ?>
+                                    <?php $waypointsAddrs = array(); ?>
+                                    @foreach($routeWaypoints as $routeWaypoint)
+                                      <?php $waypointsAddrs[$routeWaypoint->index] = $routeWaypoint->addr; ?>
+                                    @endforeach
+                                    <?php $waypointsAddrsString = "['" . implode("','", $waypointsAddrs) . "']"; ?>
+
+                                    <div class="sidebar-row row" onclick="sidebarClick(this,<?php echo $waypointsAddrsString; ?>)">
                                       <div class="col-sm-6">
                                         <?php echo $route->rname ?>
                                       </div>
                                       <div class="col-sm-6">
-                                        <div class="row">
-                                          5 Hr 30 Min
-                                        </div>
-                                        <div class="row">
-                                          9000 Miles
-                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row"></div>
                                       </div>
                                     </div>
                                   </li>
